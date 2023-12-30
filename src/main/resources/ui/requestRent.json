@@ -1,0 +1,21 @@
+{
+  "titles": [
+    "Send Rent Payment Request",
+    "Request Rent",
+    "Enter Tenant Details."
+  ],
+  "formId": "requestrent_form",
+
+  "inputs": [
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Tenant is required",
+      "labelId": null,
+      "label": "Select Tenant",
+      "inputType": "select",
+      "inputId": "request_rent_tenant",
+      "placeHolder": null
+    }
+
+  ]
+}

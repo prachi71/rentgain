@@ -1,0 +1,31 @@
+micronaut:
+  application:
+    name: rentgain
+  server:
+    cors:
+      enabled: true
+MESSAGES:
+  RequestVerificationLLL:
+    success: 'Verification request submitted'
+    error: 'Verification request failed.'
+  RequestDeposit:
+    success: 'Deposit request sent to your tenant.'
+    error: 'Deposit request failed.'
+  RequestReceipt:
+    success: 'Receipt request submitted.'
+    error: 'Verification request failed.'
+  RequestRent:
+    success: 'Rent request submitted.'
+    error: 'Rent request failed.'
+  RequestReminder:
+    success: 'Rent reminder request submitted.'
+    error: 'Reminder request failed.'
+  Tenant:
+    success: 'Tenant saved successfully.'
+    error: 'Failed to save tenant.'
+    statusText: 'Tenant is scheduled to receive rent invoices.'
+  Property:
+    success: 'Property saved successfully.'
+    error: 'Failed to save property.'
+    statusText: 'Will be available when adding tenant.'
+

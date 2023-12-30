@@ -1,0 +1,46 @@
+{
+  "titles": [
+    "Verification Request",
+    "Tenant Details",
+    "Enter Verification Details."
+  ],
+  "formId": "verify_form",
+  "inputs": [
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Tenant name is required",
+      "labelId": null,
+      "label": "Tenant Full Name",
+      "inputType": "text",
+      "inputId": "verify_tenant_fullname",
+      "placeHolder": "John Doe"
+    },
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Mobile number is required.",
+      "labelId": null,
+      "label": "Mobile",
+      "inputType": "text",
+      "inputId": "verify_tenant_mobile",
+      "placeHolder": "9845012345"
+    },
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Email is required",
+      "labelId": null,
+      "label": "Email",
+      "inputType": "email",
+      "inputId": "verify_tenant_email",
+      "placeHolder": "tenant@companyemail.com"
+    },
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Pan is required for KYC",
+      "labelId": null,
+      "label": "Email",
+      "inputType": "text",
+      "inputId": "verify_tenant_pan",
+      "placeHolder": "ADZPR1234E"
+    }
+  ]
+}

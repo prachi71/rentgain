@@ -1,0 +1,105 @@
+<div class="offcanvas offcanvas-end" id="verify_form">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel">Verification Request</h5>
+        <button
+                aria-label="Close"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                type="button"
+        ></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form id="verify_form_id" novalidate onsubmit="return false">
+            <div class="content" id="personal-info-vertical-modern">
+                <div class="content-header mb-3">
+                    <h6 class="mb-0">Tenant Details</h6>
+                    <small>Enter Verification Details.</small>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label" for="verify_tenant_fullname">Tenant Full Name</label>
+
+                        <input class="form-control" id="verify_tenant_fullname" name="verify_tenant_fullname"
+                               placeholder="John Doe"
+                               required
+                               type="text"
+                        >
+                        <div class="valid-feedback">
+                            <span class="fa fa-check"></span>
+                        </div>
+                        <div class="invalid-feedback">
+                            Required
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label" for="verify_tenant_mobile">Mobile</label>
+
+                    <input class="form-control" id="verify_tenant_mobile"
+                           name="verify_tenant_mobile"
+                           placeholder="9845801234"
+                           required
+                           type="tel"
+                    >
+                    <div class="valid-feedback">
+                        <span class="fa fa-check"></span>
+                    </div>
+                    <div class="invalid-feedback">
+                        Required
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label" for="verify_tenant_email">Email</label>
+
+                    <input                            class="form-control"
+                            id="verify_tenant_email"
+                            name="verify_tenant_email"
+                            placeholder="tenant@myproperty.com"
+                            required
+                            type="text"
+                    >
+                    <div class="valid-feedback">
+                        <span class="fa fa-check"></span>
+                    </div>
+                    <div class="invalid-feedback">
+                        Required
+                    </div>
+
+                    <div class="form-text">Work Email</div>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label" for="verify_tenant_pan">Pan</label>
+
+                    <input                             aria-describedby="verify_tenant_pan2"
+                            aria-label="ADZ1236E"
+                            class="form-control dt-salary"
+                            id="verify_tenant_pan"
+                            name="verify_tenant_pan"
+                            placeholder="ABCPK1234E"
+                            required
+                            type="text"
+                    >
+                    <div class="valid-feedback">
+                        <span class="fa fa-check"></span>
+                    </div>
+                    <div class="invalid-feedback">
+                        Required
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 mt-4">
+                    <button class="btn btn-primary data-submit me-sm-3 me-1" type="submit">Submit</button>
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="offcanvas" type="reset">Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

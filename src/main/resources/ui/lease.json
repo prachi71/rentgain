@@ -1,0 +1,46 @@
+{
+  "titles": [
+    "Lease Property",
+    "Lease Details",
+    "Enter Your Lease Details."
+  ],
+  "formId": "",
+  "inputs": [
+    {
+      "col": "col-6",
+      "invalidFeedBack": "Rent amount is required",
+      "labelId": null,
+      "label": "Rent Amount",
+      "inputType": "number",
+      "inputId": "llr_amount",
+      "placeHolder": ""
+    },
+    {
+      "col": "col-6",
+      "invalidFeedBack": "Rent due day is required.",
+      "labelId": null,
+      "label": "Rent Due By",
+      "inputType": "text",
+      "inputId": "llr_rentdueby",
+      "placeHolder": ""
+    },
+    {
+      "col": "col-6",
+      "invalidFeedBack": "Lease start sate is required",
+      "labelId": null,
+      "label": "Lease Start Date",
+      "inputType": "text",
+      "inputId": "llr_leasestartdate",
+      "placeHolder": "DD/MM/YYYY"
+    },
+    {
+      "col": "col-6",
+      "invalidFeedBack": "Lease end sate is required",
+      "labelId": null,
+      "label": "Lease End Date",
+      "inputType": "text",
+      "inputId": "llr_leaseenddate",
+      "placeHolder": "DD/MM/YYYY"
+    }
+  ]
+}

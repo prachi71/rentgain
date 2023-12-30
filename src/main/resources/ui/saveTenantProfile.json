@@ -1,0 +1,58 @@
+{
+  "titles": [
+    "Complete your Profile",
+    "Your Details",
+    "Enter Your Personal Details."
+  ],
+  "formId": "tenant_profile_form",
+  "inputs": [
+    {
+      "col": "col-md-6",
+      "invalidFeedBack": "Legal full name  is a required",
+      "labelId": null,
+      "label": "Legal Full Name",
+      "inputType": "text",
+      "inputId": "llt_fullname",
+      "placeHolder": "First and Last name"
+    },
+    {
+      "col": "col-md-6",
+      "invalidFeedBack": "Permanent Address is required.",
+      "labelId": null,
+      "label": "Permanent Address",
+      "warning": "Not to be confused with the address of the property you are renting.",
+      "inputType": "text",
+      "inputId": "llt_address",
+      "placeHolder": "Start typing address ..."
+    },
+    {
+      "col": "col-md-6",
+      "invalidFeedBack": "House number is required",
+      "labelId": null,
+      "label": "House or Apt Number",
+      "inputType": "text",
+      "inputId": "llt_unit",
+      "placeHolder": "House or Apt Number"
+    },
+    {
+      "col": "col-md-6",
+      "invalidFeedBack": "Email is required",
+      "labelId": null,
+      "label": "Email",
+      "inputType": "email",
+      "inputId": "llt_email",
+      "placeHolder": "Your email"
+    },
+    {
+      "col": "col-md-6",
+      "invalidFeedBack": "PAN is required",
+      "labelId": null,
+      "label": "PAN Car Number",
+      "inputType": "text",
+      "inputId": "llt_pan",
+      "placeHolder": "ABCDE1234F"
+    }
+
+
+  ]
+}

@@ -1,0 +1,121 @@
+micronaut:
+  application:
+    name: rentgain
+  server:
+    cors:
+      enabled: true
+  router:
+    static-resources:
+      default:
+        paths:
+          - "classpath:public"
+          - "classpath:public/app-assets"
+          - "classpath:public/assets"
+        mapping: /**
+  views:
+    jte:
+      dynamic: false
+MESSAGES:
+  Default:
+    confirmButtonText: 'Open Whatsapp!'
+    footerMsg1: 'Check your'
+    footerMsg2: 'WhatsApp'
+    footerMsg3: 'for updates to this request.'
+    link: 'https://wa.me'
+  RequestVerification:
+    success: 'Verification request submitted'
+    error: 'Verification request failed.'
+  RequestDeposit:
+    success: 'Deposit request sent to your tenant.'
+    error: 'Deposit request failed.'
+  RequestReceipt:
+    success: 'Receipt request submitted.'
+    error: 'Verification request failed.'
+  RequestRent:
+    success: 'Rent request submitted.'
+    error: 'Rent request failed.'
+  RequestReminder:
+    success: 'Rent reminder request submitted.'
+    error: 'Reminder request failed.'
+  Tenant:
+    success: 'Tenant saved successfully.'
+    error: 'Failed to save tenant.'
+    statusText: 'Please invite tenant by clicking the button below.'
+    confirmButtonText: 'Invite Via Whatsapp'
+  TenantProfile:
+      success: 'Profile saved successfully.'
+      error: 'Failed to save your profile.'
+      statusText: 'Please check your WhatsApp for updates.'
+      confirmButtonText: 'GoTo Whatsapp'
+  Property:
+    success: 'Property saved successfully.'
+    error: 'Failed to save property.'
+    statusText: 'Will be available when adding tenant.'
+  LeaseDate:
+    success: 'Lease start date is valid.'
+    error: 'Lease start must be before lease end date.'
+    statusText: 'Please check lease start/end dates.'
+gupshup:
+  wa:
+    inbound:
+      client:
+        url: 'https://media.smsgupshup.com'
+        path: 'GatewayAPI/rest'
+        retry:
+          attempts: 2
+          delay: 1000
+    creds:
+      hsm:
+        user: '2000219131'
+        password: 'GluDlwJY0'
+      twoway:
+        user: '2000219134'
+        password: 'hIGQegwJF'
+    header: "RentGain : Renting Made Easy"
+    footer: "https://rentgain.com"
+wags:
+  inbound:
+    client:
+      url: 'https://media.smsgupshup.com'
+      path: 'GatewayAPI/rest'
+      retry:
+        attempts: 2
+        delay: 1000
+decentro:
+  virtualaccount:
+    url: 'https://in.decentro.tech'
+    path: 'v2/banking/account/virtual'
+  credentials:
+    client_id: 'rentgain_prod'
+    client_secret: 'KkgP4ep6yeDcUwQsGwZlwpEO8CgmyZ0y'
+    kyc_module_secret: 'UiPwdSsVcginyibCZYCir8LWPHPb4G2H'
+    accounts_module_secret: 'B4bLZzuVEIE4KNYRPAXw6x45VIjI2qqe'
+    payments_module_secret: 'abk6MtgX9HYNwdX8tfAGntNp3xpGZC4M'
+    provider_secret: 'QQrp78iywB4geWYv4E3o9fNQMvyIGFWv'
+  bankaccountvalidation:
+    url: 'https://in.decentro.tech'
+    path: 'core_banking/money_transfer/validate_account'
+  upigen:
+    url: 'https://in.decentro.tech'
+    path: 'v2/payments/upi/link'
+  accountbalance:
+    url: 'https://in.decentro.tech'
+    path: 'core_banking/money_transfer/get_balance'
+  linkedaccount:
+      url: 'https://in.decentro.tech'
+      path: 'core_banking/account_information/fetch_details'
+  settlement:
+    url: 'https://in.decentro.tech'
+    path: 'core_banking/money_transfer/initiate'
+  bankaccount-to-virtualaccount:
+    url: 'https://in.decentro.tech'
+    path: 'v2/banking/account/settlement_account'
+  kyc:
+    url: 'https://in.decentro.tech'
+    path: 'kyc/public_registry/validate'
+  transaction:
+    status:
+      url: 'https://in.decentro.tech'
+      path: 'core_banking/money_transfer/get_status'
+wamessages:
+  tenantinvite: "Dear %s I have partnered with RentGain to manage rent payments. Please complete your profile at "

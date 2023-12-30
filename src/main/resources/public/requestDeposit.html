@@ -1,0 +1,71 @@
+<div class="offcanvas offcanvas-end" id="deposit_form">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="depositModalLabel">Request Deposit From Tenant</h5>
+        <button
+                aria-label="Close"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                type="button"
+        ></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form class="depositRequestForm pt-0 row g-2" id="deposit_form_id" onsubmit="return false">
+            <div class="col-sm-12">
+                <label class="form-label" for="deposit_tenant_fullname">Tenant Full Name</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text" id="deposit_tenant_fullname2"><i class="fa fa-user"></i></span>
+                    <input
+                            aria-describedby="deposit_tenant_fullname2"
+                            aria-label="John Doe"
+                            class="form-control dt-full-name"
+                            id="deposit_tenant_fullname"
+                            name="deposit_tenant_fullname"
+                            placeholder="John Doe"
+                            type="text"
+                    />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <label class="form-label" for="deposit_tenant_mobile">Mobile</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text"><i class="ti ti-mobile"></i></span>
+                    <input
+                            aria-label="9845012345"
+                            class="form-control dt-email"
+                            id="deposit_tenant_mobile"
+                            name="deposit_tenant_mobile"
+                            placeholder="9845801234"
+                            type="tel"
+                    />
+                </div>
+
+            </div>
+            <label class="form-label">Deposit Type</label>
+            <div class="col-md-6">
+                <div class="form-check mb-2">
+                    <input name="deposit_type" value="token" type="radio" id="deposit_token"  class="form-check-input" >
+                    <label class="form-check-label" for="deposit_token">Token</label>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-check mb-2">
+                    <input name="deposit_type" value="full" type="radio" id="deposit_full" class="form-check-input" checked>
+                    <label class="form-check-label" for="deposit_full">Full</label>
+                </div>
+
+            </div>
+            <div class="col-sm-12">
+                <label class="form-label" for="deposit_amount">Deposit Amount</label>
+                <div class="input-group input-group-merge has-validation">
+                    <span id="depositAmount2" class="input-group-text"><i class="ti ti-currency-rupee"></i></span>
+                    <input type="number" id="deposit_amount" name="deposit_amount" class="form-control dt-salary" placeholder="12000" aria-label="12000" aria-describedby="depositAmount2">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button class="btn btn-primary data-submit me-sm-3 me-1" type="submit">Submit</button>
+                <button class="btn btn-outline-secondary" data-bs-dismiss="offcanvas" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

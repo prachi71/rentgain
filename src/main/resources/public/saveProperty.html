@@ -1,0 +1,65 @@
+<div class="offcanvas offcanvas-end" id="addp_form">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel">Add Property</h5>
+        <button
+                aria-label="Close"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                type="button"
+        ></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form  id="addp_form_id" novalidate onsubmit="return false">
+
+            <div class="content" id="personal-info-vertical-modern">
+                <div class="content-header mb-3">
+                    <h6 class="mb-0">Property and Tenant Details</h6>
+                    <small>Enter Your Property Details.</small>
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="llp_nickname"><span
+                                class="bg-white px-1">Property Nick Name</span></label>
+
+                        <input class="form-control" id="llp_nickname" name="llp_nickname"
+                               placeholder="My Apt 1"
+                               type="text">
+                        <div class="valid-feedback">
+                            <span class="fa fa-check"></span>
+                        </div>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="llp_address"><span
+                                class="bg-white px-1">Property Address</span></label>
+                        <textarea class="form-control" id="llp_address"
+                                  name="llp_address" placeholder1="Enter street address.."
+                                  required rows="1"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="llp_address"><span
+                                class="bg-white px-1">House or Apt Number</span></label>
+                        <input class="form-control" id="llp_unit" name="llp_unit" type="text">
+                        <div class="valid-feedback">
+                            <span class="fa fa-check"></span>
+                        </div>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary data-submit me-sm-3 me-1" type="submit">Submit</button>
+                        <button class="btn btn-outline-secondary" data-bs-dismiss="offcanvas" type="reset">Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+

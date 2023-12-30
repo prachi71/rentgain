@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html
+        class="light-style layout-menu-fixed"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template"
+        data-theme="theme-default"
+        dir="ltr"
+        lang="en"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+            name="viewport"
+    />
+
+    <title>RentGain | Renting Made Easy</title>
+
+    <meta content="" name="description"/>
+
+    <!-- Favicon -->
+    <link href="/assets/images/favicon-cropped.svg" rel="icon" type="image/svg+xml"/>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css" rel="stylesheet">
+    <!-- Core CSS -->
+    <link class="template-customizer-core-css" href="/assets/css/rtl/core.css" rel="stylesheet"/>
+    <link class="template-customizer-theme-css" href="/assets/css/theme-default.css" rel="stylesheet"/>
+    <link href="/assets/css/demo.css" rel="stylesheet"/>
+    <link href="/assets/css/bootstrap-datepicker.css" rel="stylesheet"/>
+    <link href="/assets/vendor/libs/bs-stepper/bs-stepper.css" rel="stylesheet"/>
+    <link href="/assets/css/bootstrap-select.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="/assets/js/helpers.js"></script>
+
+    <script src="/assets/js/config.js"></script>
+</head>
+
+<body>
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+        <!-- Basic Layout -->
+
+
+        <!-- Multi Column with Form Separator -->
+
+        <!-- Form with Tabs -->
+        <div class="col-12">
+            <small class="text-light text-center fw-bold">Lets Get Started</small>
+            <div class="bs-stepper vertical wizard-modern wizard-modern-vertical-icons-example mt-2">
+                <div class="bs-stepper-header">
+                    <div class="step active" data-target="#account-details-vertical-modern">
+                        <button aria-selected="true" class="step-trigger" type="button">
+                          <span class="bs-stepper-circle">
+                            <i class="ti ti-file-description"></i>
+                          </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title">Landlord</span>
+                            <span class="bs-stepper-subtitle">Your Details</span>
+                          </span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+
+                </div>
+                <div class="bs-stepper-content">
+                    <form action="/landlord-next.html" id="signup_form" method="post" novalidate
+                          onsubmit="return false">
+                        <!-- Account Details -->
+                        <div class="content active dstepper-block" id="account-details-vertical-modern">
+                            <div class="row g-3">
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label" for="ll_fullname"><span
+                                            class="bg-white px-1">Legal Name</span></label>
+                                    <input class="form-control" id="ll_fullname" name="ll_fullname"
+                                           placeholder1="First and Last Name"
+                                           required type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <!-- <span class="alert-danger text-center">Is profile and legal name same ?</span> -->
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="ll_email"><span
+                                            class="bg-white px-1">Email</span></label>
+
+                                    <input class="form-control" id="ll_email" name="ll_email"
+                                           placeholder1="any@example.com" required
+                                           type="email">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Email is required and with the <span class="fa-solid fa-at"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="ll_address"><span
+                                            class="bg-white px-1">Address</span></label>
+
+                                    <input class="form-control" id="ll_address"
+                                              name="ll_address" placeholder1="1 MG Road.."
+                                              required rows="1"></input>
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="ll_unit"><span
+                                            class="bg-white px-1">House or Apt Number</span></label>
+
+                                    <input Apr House Nbr class="form-control" id="ll_unit"
+                                           name="ll_unit" or placeholder1="123" required type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="ll_bacctn"><span
+                                            class="bg-white px-1">Bank Account Number</span></label>
+
+                                    <input class="form-control" id="ll_bacctn" name="ll_bacctn"
+                                           placeholder1="123456789" required
+                                           type="password">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="ll_bacctn_match"><span
+                                            class="bg-white px-1">Confirm Bank Account Number</span></label>
+
+                                    <input class="form-control" data-match="ll_bacctn" id="ll_bacctn_match"
+                                           name="ll_bacctn_match"
+                                           placeholder1="Confirm Bank Account Number" required
+                                           type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Bank account numbers must match
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="ll_ifsc"><span
+                                            class="bg-white px-1">Bank IFSC Code</span></label>
+
+                                    <input class="form-control" id="ll_ifsc" name="ll_ifsc"
+                                           placeholder1="HDFC00000" required
+                                           type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <label class="form-label" for="ll_pan"><span
+                                            class="bg-white px-1">Pan Card Number</span></label>
+
+                                    <input class="form-control" id="ll_pan" name="ll_pan" placeholder1="PAN Number"
+                                           required type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-sm-12 mt-2 text-center">
+                                <button type="reset" class="btn btn-label-secondary mt-2">
+
+                                    <span class="align-left">Clear</span>
+                                </button>
+
+                                <button class="btn btn-primary mt-2 "
+                                        id="ll_submit">
+                                    <span aria-hidden="true" class="spinner-border spinner-border-sm me-2 d-none"
+                                          role="status"></span>
+                                    <span class="align-right">Submit</span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Alignment -->
+
+    </div>
+    <!-- / Content -->
+
+    <!-- Footer -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl">
+            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                <div>
+                    ©
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    2023
+                    <a class="fw-semibold" href="https://rentgain.com" target="_blank">RentGain</a>
+                </div>
+                <div>
+                    <a class="footer-link me-4" href="https://rentgain.com/tc.html" target="_blank">Terms & Conditions
+                    </a>
+
+
+                    <a class="footer-link d-none d-sm-inline-block" href="https://rentgain.com/support.html"
+                       target="_blank">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / Footer -->
+
+    <div class="content-backdrop fade"></div>
+</div>
+<!-- Core JS -->
+<!-- build:js assets//js/core.js -->
+
+<script src="/assets/vendor/libs/popper/popper.js"></script>
+
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
+<!-- endbuild -->
+
+<!-- s JS -->
+
+<!--<script src="/assets/js/cleave.js"></script>-->
+<!--<script src="/assets/js/cleave-phone.js"></script>-->
+
+<!--&lt;!&ndash; Main JS &ndash;&gt;-->
+<!--<script src="/assets/js/main.js"></script>-->
+
+<!--&lt;!&ndash; Page JS &ndash;&gt;-->
+<!--<script src="/assets/js/form-layouts.js"></script>-->
+<!--&lt;!&ndash; BEGIN: Page JS&ndash;&gt;-->
+<!--<script src="/assets/js/form-input-mask.js"></script>-->
+<!--<script src="/assets/js/forms-pickers.js"></script>-->
+
+<!-- END: Page JS-->
+<!-- BEGIN: Address auto  complete -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA74yxtS-X_KOJBs4QavAUTXkY67UuRZgI&callback=initAutocomplete&libraries=places&v=weekly"></script>
+<!-- END: Address auto  complete -->
+<script src="/assets/js/bootstrap-datepicker.js"></script>
+<!--<script src="/assets/js/bootstrap-select.js"></script>-->
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/5e73d61d9c.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/assets/js/form-wizard-icons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="/assets/js/rentgainTable.js"></script>
+<script src="/assets/js/address-auto.js"></script>
+<script src="/assets/js/validate-form.js"></script>
+</body>
+</html>

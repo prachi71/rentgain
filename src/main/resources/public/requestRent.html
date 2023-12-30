@@ -1,0 +1,80 @@
+<div class="offcanvas offcanvas-end" id="requestrent_form">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel">Send Rent Payment Request</h5>
+        <button
+                aria-label="Close"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                type="button"
+        ></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form id="requestrent_form_id" novalidate onsubmit="return false">
+
+            <div class="content" id="personal-info-vertical-modern">
+                <div class="content-header mb-3">
+                    <h6 class="mb-0">Request Rent</h6>
+                    <small>Enter Tenant Details.</small>
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-12">
+                        <label class="form-label"><span
+                                class="bg-white px-1">Select Tenant</span></label>
+                        <div class="col-md-12">
+                            <select aria-label="Default select example" class="form-select" id="rent_request_tenant"
+                                    name="request_rent_tenant">
+
+                            </select>
+                        </div>
+
+                        <div class="valid-feedback">
+                            <span class="fa fa-check"></span>
+                        </div>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label"><span
+                                    class="bg-white px-1">Month</span></label>
+                            <select aria-label="Default select example" class="form-select" name="request_rent_month">
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sept">Sept</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><span
+                                    class="bg-white px-1">Year</span></label>
+                            <select aria-label="Default select example" class="form-select" name="request_rent_year">
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary data-submit me-sm-3 me-1" type="submit">Submit</button>
+                            <button class="btn btn-outline-secondary" data-bs-dismiss="offcanvas" type="reset">Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+        </form>
+    </div>
+</div>

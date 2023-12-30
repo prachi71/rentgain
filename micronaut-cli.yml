@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.rentgain
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, github-workflow-ci, github-workflow-google-cloud-run, github-workflow-google-cloud-run-graalvm, gradle, http-client, jackson-databind, java, java-application, jetty-server, junit, logback, lombok, micronaut-build, readme, shade, views-jte, yaml]

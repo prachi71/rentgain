@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html
+        class="light-style layout-menu-fixed"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template"
+        data-theme="theme-default"
+        dir="ltr"
+        lang="en"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+            name="viewport"
+    />
+
+    <title>RentGain | Renting Made Easy</title>
+
+    <meta content="" name="description"/>
+
+    <!-- Favicon -->
+    <link href="/assets/images/favicon-cropped.svg" rel="icon" type="image/svg+xml"/>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+          rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css" rel="stylesheet">
+    <!-- Core CSS -->
+    <link class="template-customizer-core-css" href="/assets/css/rtl/core.css" rel="stylesheet"/>
+    <link class="template-customizer-theme-css" href="/assets/css/theme-default.css" rel="stylesheet"/>
+    <link href="/assets/css/demo.css" rel="stylesheet"/>
+    <link href="/assets/css/bootstrap-datepicker.css" rel="stylesheet"/>
+    <link href="/assets/vendor/libs/bs-stepper/bs-stepper.css" rel="stylesheet"/>
+    <!-- s CSS -->
+    <link href="/assets/css/flatpickr.css" rel="stylesheet"/>
+
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="/assets/js/helpers.js"></script>
+
+    <script src="/assets/js/config.js"></script>
+</head>
+
+<body>
+<div class="content-wrapper px-4 mt-5">
+    <!-- Content -->
+    <div class="row mb-5">
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">Add Tenant</p>
+                        <button data-page="addtandp" aria-controls="DataTables_Table_0" class="btn btn-secondary next-action btn-primary"
+                                tabindex="0" type="button"><span><i
+                                class="ti ti-user me-sm-1"></i> <span
+                                >Add</span></span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">Verify Tenant</p>
+                    <button data-page="verify" aria-controls="DataTables_Table_0" class="btn btn-secondary next-action btn-primary"
+                            tabindex="0" type="button"><span><i
+                            class="ti ti-id-badge me-sm-1"></i> <span>Verify</span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">Add Property</p>
+                        <button data-page="addp" aria-controls="DataTables_Table_0" class="btn btn-secondary next-action btn-primary"
+                                tabindex="0" type="button"><span><i
+                                class="ti ti-home me-sm-1"></i> <span
+                                >Add</span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">Send Reminder</p>
+                    <button data-page="reminder" aria-controls="DataTables_Table_0" class="btn btn-secondary next-action btn-primary"
+                            tabindex="0" type="button"><span><i
+                            class="ti ti-calendar me-sm-1"></i> <span>Reminder</span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">Get Receipt</p>
+                    <button data-page="reminder" aria-controls="DataTables_Table_0" class="btn btn-secondary next-action btn-primary"
+                            tabindex="0" type="button"><span><i
+                            class="ti ti-download me-sm-1"></i> <span>Get</span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">Request Deposit</p>
+                    <button data-page="reminder" aria-controls="DataTables_Table_0" class="btn btn-secondary next-action btn-primary"
+                            tabindex="0" type="button"><span><i
+                            class="ti ti-check"></i> <span>Send</span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="offForm"></div>
+
+    <!-- / Content -->
+
+    <!-- Footer -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl">
+            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                <div>
+                    ©
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    2023
+                    <a class="fw-semibold" href="https://rentgain.com" target="_blank">RentGain</a>
+                </div>
+                <div>
+                    <a class="footer-link me-4" href="https://rentgain.com/tc.html" target="_blank">Terms & Conditions
+                    </a>
+
+
+                    <a class="footer-link d-none d-sm-inline-block" href="https://rentgain.com/support.html"
+                       target="_blank">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / Footer -->
+
+    <div class="content-backdrop fade"></div>
+</div><!-- Core JS -->
+<!-- build:js assets//js/core.js -->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+
+<!-- endbuild -->
+
+<!-- s JS -->
+
+<script src="/assets/js/cleave.js"></script>
+<script src="/assets/js/cleave-phone.js"></script>
+
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script src="/assets/js/form-layouts.js"></script>
+<!-- BEGIN: Page JS-->
+<script src="/assets/js/form-input-mask.js"></script>
+<script src="/assets/js/forms-pickers.js"></script>
+
+<!-- END: Page JS-->
+<!-- BEGIN: Address auto  complete -->
+<script src="/assets/js/address-auto.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA74yxtS-X_KOJBs4QavAUTXkY67UuRZgI&callback=initAutocomplete&libraries=places&v=weekly"></script>
+<!-- END: Address auto  complete -->
+<script src="/assets/js/bootstrap-datepicker.js"></script>
+<script src="/assets/js/dynamic.js"></script>
+<script src="/assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/5e73d61d9c.js"></script>
+
+<script src="/assets/js/form-wizard-icons.js"></script>
+<script src="/assets/js/nextAction.js"></script>
+</body>
+</html>

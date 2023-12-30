@@ -1,0 +1,29 @@
+[
+  {
+    "text": "RentGain",
+    "href": "https://rentgain.com",
+    "attr": {
+      "class": "fw-semibold",
+      "href": "https://rentgain.com",
+      "target": "_blank"
+    }
+  },
+  {
+    "text": "Terms &amp; Conditions",
+    "href": "https://rentgain.com/tc.html",
+    "attr": {
+      "class": "footer-link me-4",
+      "href": "https://rentgain.com/tc.html",
+      "target": "_blank"
+    }
+  },
+  {
+    "text": "Support",
+    "href": "https://rentgain.com/support.html",
+    "attr": {
+      "class": "footer-link d-none d-sm-inline-block",
+      "href": "https://rentgain.com/support.html",
+      "target": "_blank"
+    }
+  }
+]

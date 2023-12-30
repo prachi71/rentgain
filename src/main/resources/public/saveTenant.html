@@ -1,0 +1,155 @@
+<div class="offcanvas offcanvas-end" id="addtandp_form">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel">Add Tenant</h5>
+        <button
+                aria-label="Close"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                type="button"
+        ></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form id="addtandp_form_id" method="post" novalidate onsubmit="return false">
+
+            <div class="content" id="personal-info-vertical-modern">
+                <div class="content-header mb-3">
+                    <h6 class="mb-0">Property and Tenant Details</h6>
+                    <small>Enter Your Tenant and Property Details.</small>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label" for="llp_tenantnumber"><span
+                                class="bg-white px-1">Tenant Mobile Number</span></label>
+                        <input class="form-control phone-number-mask" id="llp_tenantnumber"
+                               name="llp_tenantnumber" placeholder1="1 234 567 8900"
+                               required type="tel">
+                        <div class="valid-feedback">
+                            <span class="fa fa-check"></span>
+                        </div>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <select aria-label="Default select example" class="form-select llr_existing_property"
+                                id="llr_existing_property" name="llr_existing_property">
+                            <option selected>Select Existing Property</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="divider divider-dashed">
+                            <div class="divider-text">Or</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <button class="form-control btn btn-secondary" onclick="gotoAddProperty()"
+                                type="button"><span><i
+                                class="ti ti-plus me-sm-1"></i> <span>Add New Property</span></span>
+                        </button>
+                    </div>
+                    <div class="row g-3">
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                                <input checked="" class="form-check-input" id="llr_prepay" name="llr_prepost" type="radio"
+                                       value="pre">
+                                <label class="form-check-label" for="llr_prepay">
+                                    Rent Prepaid
+                                </label>
+                                <i
+                                        aria-label="With Pre Pay rent for the current month is due in the same month."
+                                        class="ti ti-help text-muted"
+                                        data-bs-original-title="With Pre Pay rent for the current month is due in the same month."
+                                        data-bs-placement="top"
+                                        data-bs-toggle="tooltip"></i>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="llr_postpay" name="llr_prepost" type="radio"
+                                       value="post">
+                                <label class="form-check-label" for="llr_postpay">
+                                    Rent Postpaid
+
+                                </label>
+                                <i aria-label="With Post Pay rent for the current month is due in the next month."
+                                   class="ti ti-help text-muted"
+                                   data-bs-original-title="With Post Pay rent for the current month is due in the next month."
+                                   data-bs-placement="top"
+                                   data-bs-toggle="tooltip"></i>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label class="form-label" for="llr_amount"><span
+                                        class="bg-white px-1">Rent Amount</span></label>
+                                <div class="mb-3">
+
+                                    <input class="form-control numeral-mask" id="llr_amount" name="llr_amount"
+                                           placeholder1="10000"
+                                           required type="number">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label ms-2" for="llr_rentdueby"><span
+                                        class="bg-white px-1">Rent Due By</span></label>
+                                <div class="mb-3">
+                                    <input class="form-control" data-date-format="dd" id="llr_rentdueby"
+                                           name="llr_rentdueby" placeholder1="Day of the month"
+                                           required type="number"/>
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="llr_leasestartdate"><span
+                                    class="bg-white px-1">Lease Start Date</span></label>
+                            <div class="mb-3">
+                                <input class="form-control" id="llr_leasestartdate" name="llr_leasestartdate"
+                                       placeholder1="DD/MM/YYYY" type="text"/>
+                                <div class="valid-feedback">
+                                    <span class="fa fa-check"></span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="llr_leaseenddate"><span
+                                    class="bg-white px-1">Lease End Date</span></label>
+                            <div class="mb-3">
+                                <input class="form-control" id="llr_leaseenddate" name="llr_leaseenddate"
+                                       placeholder1="DD/MM/YYYY" type="text"/>
+                                <div class="valid-feedback">
+                                    <span class="fa fa-check"></span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    required
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <button class="btn btn-primary data-submit me-sm-3 me-1" type="submit">Submit</button>
+                        <button class="btn btn-outline-secondary" data-bs-dismiss="offcanvas" type="reset">Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

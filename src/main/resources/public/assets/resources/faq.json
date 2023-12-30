@@ -1,0 +1,114 @@
+[
+  {
+    "name": "generalFaq",
+    "qa": [
+      {
+        "q": "How do I get started on RentGain ",
+        "a": "We have a very simple WhatsApp integrated one-time sign-up process. Please enter the basic details that are required from a Statutory standpoint, complete the totally digital and real time KYC and voila you can get started."
+      },
+      {
+        "q": "Is it safe and secure ",
+        "a": "All data is stored securely on servers of top-notch cloud service providers like Google and Amazon that follow the latest security protocols."
+      },
+      {
+        "q": "How do I prove ownership of the property I am on boarding ",
+        "a": "Property tax receipt of the immediate past year, Title deeds,Current date Electricity bill."
+      },
+      {
+        "q": "How do I know if TDS is deductible ",
+        "a": "See our TDS section. Click here"
+      },
+      {
+        "q": "Whats your primary communication mode; will I get spammed ",
+        "a": "WhatsApp will be our primary medium to send invoices , receipts and reminders to the tenant. We can do so on email and/or SMS if so desired. We are a verified business partner with WhatsApp and will only send messages pertaining to the service."
+      }
+    ]
+  },
+  {
+    "name": "landlordFaq",
+    "qa": [
+      {
+        "q": "How will the tenant get the rent invoices ",
+        "a": "Once you set up the rent details, RentGain will send invoices on the first day of the month and reminders 3 days before the rent is due via WhatsApp. These invoices will have payment links that a tenant can click to pay the rent."
+      },
+      {
+        "q": "What is property on boarding ",
+        "a": "It is basically adding the details of the property on rent. You can give it a nick name like “Prestige Apartment”. Add the details like address etc so that this data is used to populate documents like rental receipts etc. This is a one-time affair.."
+      },
+      {
+        "q": "On board tenant  What's that ",
+        "a": "On boarding the tenant is simply adding the tenant details like name, WhatsApp phone number of your tenant, permanent address and assigning the property occupied by the tenant. The tenant then goes through the KYC process and the on boarding is complete."
+      },
+      {
+        "q": "What next after the on boarding is finished ",
+        "a": "Based on terms of the rental agreement like rent, date by which its due invoices get scheduled. Invoices will take into account TDS to be deducted depending on whether it is applicable or not. And oh yes is the rent in advance or arrears i.e. is the rent for the current month due on the 1st of the current month or by a date of the succeeding month. Tenant will receive these invoices aka payment links as per the schedule via WhatsApp."
+      },
+      {
+        "q": "How will I know the rent has been paid and what happens when its not paid ",
+        "a": "On receipt of the invoice the tenant can pay the invoice with 1-2 clicks and on successful completion of transaction you will be alerted vis WhatsApp that the rent has been paid. You can easily track it on your dashboard also. If the rent is not paid on time RentGain will remind the tenant through WhatsApp and after 3 reminders if the rent is still unpaid will alert you to the fact."
+      }
+    ]
+  },
+  {
+    "name": "tenantFaq",
+    "qa": [
+      {
+        "q": "As a tenant what should I expect ",
+        "a": "RentGain sends monthly rental invoices as payment links via WhatsApp, allowing tenants to make payments in a simple and secure manner with just a few clicks. Upon successful completion of the rent payment, tenants receive rental receipts automatically for tax purposes. If TDS (Tax Deducted at Source) has to be deducted and deposited into the landlord's TDS account, the platform can take care of that as well. The landlord is notified once the rent payment has been processed and paid."
+      },
+      {
+        "q": "When will be rent be credited to my Landlord's bank account ",
+        "a": "RentGain integrates payment solutions that allow for quick and efficient transfer of funds from tenants to landlords. The time of payment is used to determine when the funds will be credited to the landlord's account, with settlements made in batch mode throughout the day."
+      },
+      {
+        "q": "What if I forget to pay the rent ",
+        "a": "We all lead busy lives and work sometimes can be all encompassing . Rentgain has built reminder systems to help the busy ones amongst us . We will send out 3 reminders before the due date to help you make the payment. If even, then the payment is not realised then we will notify your landlord of the same. If a payment has been made outside of the RentGain system, it is incumbent upon the landlord to mark that month’s rent as received."
+      },
+      {
+        "q": "I need receipts. How will I get them ",
+        "a": "On successful completion of the rent payment transaction receipts generated on behalf of the landlord with all the required details to claim tax benefits will be sent out to your WhatsApp and email accounts. A tenant will not have to ask the landlord for the receipts."
+      },
+      {
+        "q": "Can I pay the advance/ security deposit using RentGain ",
+        "a": "Yes, you can and also receive a receipt for the same . Rentgain will do this by generating a payment link embedded in an invoice. You can pay this in a few clicks making the whole transaction practically instantaneous and convenient to all parties involved."
+      }
+    ]
+  },
+  {
+    "name": "tdsFaq",
+    "qa": [
+      {
+        "q": "What’s TDS",
+        "a": "The concept of TDS was introduced with an aim to collect tax from the very source of income. As per this concept, a person (deductor) who is liable to make payment of specified nature to any other person (deductee) shall deduct tax at source and remit the same into the account of the Central Government. The deductee from whose income tax has been deducted at source would be entitled to get credit of the amount so deducted on the basis of Form 26AS or TDS certificate issued by the deductor."
+      },
+      {
+        "q": "Does TDS apply to my rental relationship",
+        "a": "Tax must be deducted by you the  tenant if any of the following conditions are met: If you, the Tenant qualifies for Tax Audit u/s 44AB, is an Indian resident and an individual or HUF TDS @ 10% is liable to be deducted by the tenant and deposited in your Landlord’s TDS account. If you, the Tenant is not liable to be tax audited u/s 44AB and the rent payable per month > INR 50,000 TDS @5% is liable to be deducted by the tenant and deposited in your Lanlord’s TDS account. If you, the Tenant is other than Individual or HUF ( a corporate/partnership firm/trust etc etc) and the rent payable per annum >INR 240,000 TDS @ 10% is liable to be deducted by the tenant and deposited in your Landlord’s TDS account  ."
+      },
+      {
+        "q": "My tenant says he will pay me the rent and I should do the needful for TDS. What should I do",
+        "a": "We can take care of this for you if you authorise this for us. We can bifurcate the rent paid into TDS amount and rent due amount. Credit rent due to your bank account and TDS amount to your TDS account, and it will appear in your 26AS ."
+      },
+      {
+        "q": "What if I the landlord is a Non-resident Indian",
+        "a": "Then your tenant is liable to deduct TDS @ 30% + Applicable surcharge that varies b/w 10-37% of the 30% + cess@ 4% and deposit it in your TDS account."
+      },
+      {
+        "q": "But I do not have any other income in India other than rental income. How do I set off the TDS",
+        "a": "Your CA/CPA would be best placed to answer this question"
+      },
+      {
+        "q": "What happens if the tenant does not deduct TDS",
+        "a": "The tenant is then liable to pay interest on the tax amount @1% per month u/s 201(1A) of the IT act. This could also attract penalties u/s 271C of the IT act to the extent of taxes due."
+      },
+      {
+        "q": "What happens if the tenant deducts TDS but does not deposit",
+        "a": "The delayed deposition of TDS will attract penalties @1.5% per month plus penalties u/s of 221 could be levied."
+      },
+      {
+        "q": "All this is complicated. What do I do",
+        "a": "Simple, Authorise RentGain and we can handle all that for you."
+      }
+    ]
+  }
+]

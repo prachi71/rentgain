@@ -1,0 +1,39 @@
+{
+  "titles": [
+    "Request Deposit From Tenant",
+    "Tenant Details",
+    "Enter Your Tenant Details."
+  ],
+  "formId": "deposit_form",
+  "inputs": [
+
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Tenant full name is required.",
+      "labelId": null,
+      "label": "Tenant Full Name",
+      "inputType": "text",
+      "inputId": "deposit_tenant_fullname",
+      "placeHolder": "John Doe"
+    },
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Mobile number is required.",
+      "labelId": null,
+      "label": "Tenant Mobile Number",
+      "inputType": "text",
+      "inputId": "deposit_tenant_mobile",
+      "placeHolder": "9845078123"
+    },
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Deposit amount required.",
+      "labelId": null,
+      "label": "Deposit Amount",
+      "inputType": "number",
+      "inputId": "deposit_amount",
+      "placeHolder": "10,000"
+    }
+
+  ]
+}

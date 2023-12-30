@@ -1,0 +1,69 @@
+[
+  {
+    "src": "/assets/js/helpers.js"
+  },
+  {
+    "src": "/assets/js/config.js"
+  },
+  {
+    "src": "/assets/js/jquery.js"
+  },
+  {
+    "src": "/assets/vendor/libs/popper/popper.js"
+  },
+  {
+    "src": "/assets/js/bootstrap.js"
+  },
+  {
+    "src": "/assets/js/cleave.js"
+  },
+  {
+    "src": "/assets/js/cleave-phone.js"
+  },
+  {
+    "src": "/assets/js/main.js"
+  },
+  {
+    "src": "/assets/js/form-layouts.js"
+  },
+  {
+    "src": "/assets/js/form-input-mask.js"
+  },
+  {
+    "src": "/assets/js/forms-pickers.js"
+  },
+  {
+    "src": "https://maps.googleapis.com/maps/api/js?key=AIzaSyA74yxtS-X_KOJBs4QavAUTXkY67UuRZgI&amp;callback=initAutocomplete&amp;libraries=places&amp;v=weekly"
+  },
+  {
+    "src": "/assets/js/bootstrap-datepicker.js"
+  },
+  {
+    "src": "/assets/js/bootstrap-select.js"
+  },
+  {
+    "crossorigin": "anonymous",
+    "src": "https://kit.fontawesome.com/5e73d61d9c.js"
+  },
+  {
+    "src": "https://cdn.jsdelivr.net/npm/sweetalert2@11"
+  },
+  {
+    "src": "/assets/js/form-wizard-icons.js"
+  },
+  {
+    "src": "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+  },
+  {
+    "src": "https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/datatables.min.js"
+  },
+  {
+    "src": "/assets/js/rentgainTable.js"
+  },
+  {
+    "src": "/assets/js/address-auto.js"
+  },
+  {
+    "src": "/assets/js/validate-form.js"
+  }
+]

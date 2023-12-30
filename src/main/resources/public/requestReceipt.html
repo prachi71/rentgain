@@ -1,0 +1,96 @@
+<div class="offcanvas offcanvas-end" id="getreceipt_form">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel">Receipt</h5>
+        <button
+                aria-label="Close"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                type="button"
+        ></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form action="http://localhost:8080" id="getreceipt_form_id" method="post" novalidate onsubmit="return false">
+
+            <div class="content" id="personal-info-vertical-modern">
+                <div class="content-header mb-3">
+                    <h6 class="mb-0">Rent Receipt</h6>
+                    <small>Enter Receipt Details.</small>
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-12">
+                        <label class="form-label"><span
+                                class="bg-white px-1">Select Tenant</span></label>
+                        <div class="col-md-12">
+                            <select aria-label="Default select example" class="form-select" id="receipt_tenant" name="receipt_tenant">
+                            </select>
+                        </div>
+
+                        <div class="valid-feedback">
+                            <span class="fa fa-check"></span>
+                        </div>
+                        <div class="invalid-feedback">
+                            required
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label"><span
+                                    class="bg-white px-1">Receipt For Which Month</span></label>
+                            <select aria-label="Default select example" class="form-select" name="receipt_month">
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sept">Sept</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><span
+                                    class="bg-white px-1">Year</span></label>
+                            <select aria-label="Default select example" class="form-select" name="receipt_year">
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                <button aria-expanded="false"
+                                        class="btn btn-primary dropdown-toggle waves-effect waves-light"
+                                        data-bs-toggle="dropdown" type="button">
+                                    Receipt Via
+                                </button>
+                                <ul class="dropdown-menu"  name="dm">
+                                    <li title="Send to tenant via WhatsApp"><input class="dropdown-item" name="receipt_deliver_method"
+                                                                                   type="submit"
+                                                                                   value="Whatsapp"></input></li>
+                                    <li title="Send to tenant via Email"><input class="dropdown-item" name="receipt_deliver_method"
+                                                                                type="submit"
+                                                                                value="Email"></input></li>
+                                    <li title="Download and save"><input class="dropdown-item" name="receipt_deliver_method"
+                                                                         type="submit" value="Download"></input>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-outline-secondary" data-bs-dismiss="offcanvas" type="reset">Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

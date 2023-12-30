@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html
+        class="light-style layout-menu-fixed"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template"
+        data-theme="theme-default"
+        dir="ltr"
+        lang="en"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+            name="viewport"
+    />
+
+
+
+    <meta content="" name="description"/>
+    <title>RentGain | Renting Made Easy</title>
+    <!-- Favicon -->
+    <link href="/assets/images/favicon-cropped.svg" rel="icon" type="image/svg+xml"/>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/datatables.min.css" rel="stylesheet"/>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css" rel="stylesheet">
+    <!-- Core CSS -->
+    <link class="template-customizer-core-css" href="/assets/css/rtl/core.css" rel="stylesheet"/>
+    <link class="template-customizer-theme-css" href="/assets/css/theme-default.css" rel="stylesheet"/>
+    <link href="/assets/css/demo.css" rel="stylesheet"/>
+    <link href="/assets/css/bootstrap-datepicker.css" rel="stylesheet"/>
+    <link href="/assets/vendor/libs/bs-stepper/bs-stepper.css" rel="stylesheet"/>
+    <link href="/assets/css/bootstrap-select.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" rel="stylesheet">
+    <link href="/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" rel="stylesheet">
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="/assets/js/helpers.js"></script>
+
+    <script src="/assets/js/config.js"></script>
+</head>
+
+<body>
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+        <!-- Basic Layout -->
+
+
+        <!-- Multi Column with Form Separator -->
+
+        <!-- Form with Tabs -->
+        <div class="col-12">
+            <small class="text-light text-center fw-bold">Lets Get Started</small>
+            <div class="bs-stepper vertical wizard-modern wizard-modern-vertical-icons-example mt-2">
+                <div class="bs-stepper-header">
+                    <div class="step active" data-target="#account-details-vertical-modern">
+                        <button aria-selected="true" class="step-trigger" type="button">
+                          <span class="bs-stepper-circle">
+                            <i class="ti ti-file-description"></i>
+                          </span>
+                            <span class="bs-stepper-label">
+                            <span class="bs-stepper-title">Landlord</span>
+                            <span class="bs-stepper-subtitle">Your Details</span>
+                          </span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+
+                </div>
+                <div class="bs-stepper-content">
+                    <form action="/rentgain/saveTenantProfile" id="llt_profile_form" method="post" novalidate
+                          onsubmit="return false">
+                        <!-- Account Details -->
+                        <div class="content active dstepper-block" id="account-details-vertical-modern">
+                            <div class="row g-3">
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label" for="llt_fullname"><span
+                                            class="bg-white px-1">Legal Name</span></label>
+                                    <input class="form-control" id="llt_fullname" name="llt_fullname"
+                                           placeholder1="First and Last Name"
+                                           required type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <!-- <span class="alert-danger text-center">Is profile and legal name same ?</span> -->
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="llt_email"><span
+                                            class="bg-white px-1">Email</span></label>
+
+                                    <input class="form-control" id="llt_email" name="llt_email"
+                                           placeholder1="any@example.com" required
+                                           type="email">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Email is required and with the <span class="fa-solid fa-at"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="llt_address"><span
+                                            class="bg-white px-1">Address</span></label>
+
+                                    <input class="form-control" id="llt_address"
+                                              name="llt_address" placeholder1="1 MG Road.."
+                                              required rows="1"></input>
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="llt_unit"><span
+                                            class="bg-white px-1">House or Apt Number</span></label>
+
+                                    <input Apr House Nbr class="form-control" id="llt_unit"
+                                           name="llt_unit" or placeholder1="123" required type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label" for="llt_pan"><span
+                                            class="bg-white px-1">Pan Card Number</span></label>
+
+                                    <input class="form-control" id="llt_pan" name="llt_pan" placeholder1="PAN Number"
+                                           required type="text">
+                                    <div class="valid-feedback">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-sm-12 mt-2 text-center">
+                                <button type="reset" class="btn btn-label-secondary mt-2">
+
+                                    <span class="align-left">Clear</span>
+                                </button>
+
+                                <button class="btn btn-primary mt-2 "
+                                        id="llt_submit">
+                                    <span aria-hidden="true" class="spinner-border spinner-border-sm me-2 d-none"
+                                          role="status"></span>
+                                    <span class="align-right">Submit</span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Alignment -->
+
+    </div>
+    <!-- / Content -->
+
+    <!-- Footer -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl">
+            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                <div>
+                    ©
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    2023
+                    <a class="fw-semibold" href="https://rentgain.com" target="_blank">RentGain</a>
+                </div>
+                <div>
+                    <a class="footer-link me-4" href="https://rentgain.com/tc.html" target="_blank">Terms & Conditions
+                    </a>
+
+
+                    <a class="footer-link d-none d-sm-inline-block" href="https://rentgain.com/support.html"
+                       target="_blank">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / Footer -->
+
+    <div class="content-backdrop fade"></div>
+</div>
+<!-- Core JS -->
+<!-- build:js assets//js/core.js -->
+<script src="/assets/js/jquery.js"></script>
+
+<script src="/assets/vendor/libs/popper/popper.js"></script>
+
+<script src="/assets/js/bootstrap.js"></script>
+
+<!-- endbuild -->
+
+<!-- s JS -->
+
+<script src="/assets/js/cleave.js"></script>
+<script src="/assets/js/cleave-phone.js"></script>
+
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script src="/assets/js/form-layouts.js"></script>
+<!-- BEGIN: Page JS-->
+<script src="/assets/js/form-input-mask.js"></script>
+<script src="/assets/js/forms-pickers.js"></script>
+
+<!-- END: Page JS-->
+<!-- BEGIN: Address auto  complete -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA74yxtS-X_KOJBs4QavAUTXkY67UuRZgI&callback=initAutocomplete&libraries=places&v=weekly"></script>
+<!-- END: Address auto  complete -->
+<script src="/assets/js/bootstrap-datepicker.js"></script>
+<script src="/assets/js/bootstrap-select.js"></script>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/5e73d61d9c.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/assets/js/form-wizard-icons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/datatables.min.js"></script>
+<script src="/assets/js/rentgainTable.js"></script>
+<script src="/assets/js/address-auto.js"></script>
+<script src="/assets/js/validate-form.js"></script>
+</body>
+</html>

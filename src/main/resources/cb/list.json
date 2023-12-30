@@ -1,0 +1,50 @@
+{
+  "button": "Menu",
+  "sections": [
+    {
+      "title": "Set Up",
+      "rows": [
+        {
+          "id": "id1",
+          "title": "Add Tenant",
+          "description": "Select to add a tenant"
+        }
+      ]
+    },
+    {
+      "title": "Maintain",
+      "rows": [
+        {
+          "id": "id2",
+          "title": "Edit Tenant",
+          "description": "Click here to update/delete tenants"
+        }
+      ]
+    },
+    {
+      "title": "Service",
+      "rows": [
+        {
+          "id": "id4",
+          "title": "Customer care",
+          "description": "select to connect with Customer care"
+        },
+        {
+          "id": "id5",
+          "title": "Call Back",
+          "description": "We will call you back in 10 min"
+        }
+      ]
+    },
+    {
+      "title": "Account",
+      "rows": [
+        {
+          "id": "id8",
+          "title": "Account Details",
+          "description": "Change account details including contact and banking information"
+        }
+      ]
+    }
+  ]
+}

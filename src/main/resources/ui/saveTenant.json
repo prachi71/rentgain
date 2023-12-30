@@ -1,0 +1,21 @@
+{
+  "titles": [
+    "Add Tenant",
+    "Property and Tenant Details",
+    "Enter Your Tenant and Property Details."
+  ],
+  "formId": "addtandp_form",
+  "inputs": [
+
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Mobile number is required.",
+      "labelId": null,
+      "label": "Tenant Mobile Number",
+      "inputType": "text",
+      "inputId": "llp_tenantnumber",
+      "placeHolder": "9845012345"
+    }
+
+  ]
+}

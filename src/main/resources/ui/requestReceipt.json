@@ -1,0 +1,21 @@
+{
+  "titles": [
+    "Receipt",
+    "Send Rent Receipt",
+    "Enter Receipt Details."
+  ],
+  "formId": "getreceipt_form",
+
+  "inputs": [
+    {
+      "col": "col-md-12",
+      "invalidFeedBack": "Tenant is required",
+      "labelId": null,
+      "label": "Select Tenant",
+      "inputType": "select",
+      "inputId": "receipt_tenant",
+      "placeHolder": null
+    }
+
+  ]
+}

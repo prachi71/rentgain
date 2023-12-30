@@ -1,0 +1,68 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.7.4"
+    id("gg.jte.gradle") version "2.2.6"
+}
+
+version = "0.2"
+group = "com.rentgain"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut.views:micronaut-views-jte")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    compileOnly("org.projectlombok:lombok")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.micronaut:micronaut-validation")
+    implementation group: 'com.google.cloud', name: 'google-cloud-firestore', version: '3.9.2'
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    // https://mvnrepository.com/artifact/com.openhtmltopdf/openhtmltopdf-core
+    implementation group: 'com.openhtmltopdf', name: 'openhtmltopdf-core', version: '1.0.10'
+    // https://mvnrepository.com/artifact/com.openhtmltopdf/openhtmltopdf-pdfbox
+    implementation group: 'com.openhtmltopdf', name: 'openhtmltopdf-pdfbox', version: '1.0.10'
+
+
+}
+
+
+application {
+    mainClass.set("com.rentgain.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+tasks {
+    dockerBuild {
+        images = ["${System.env.DOCKER_IMAGE ?: project.name}:$project.version"]
+    }
+
+    dockerBuildNative {
+        images = ["${System.env.DOCKER_IMAGE ?: project.name}:$project.version"]
+    }
+}
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.rentgain.*")
+    }
+}
+
+
+jte {
+    sourceDirectory = file("src/main/jte").toPath()
+    generate()
+}
+
+
