@@ -3,6 +3,18 @@
  */
 
 'use strict';
+// $(function () {
+//
+//     $('#ll_bacctn').bind('keyup paste', function () {
+//         this.value = this.value.replace(/[^0-9]/g, '*');
+//     });
+//
+//     $('#ll_bacctn').keyup(function () {
+//         var text = $(this).val().trim();
+//         $('#ll_bacctn_val').text(text);
+//     });
+// });
+
 
 window.addEventListener("load", (event) => {
     $('[data-toggle="tooltip"]').tooltip();
@@ -91,7 +103,7 @@ function buildLandLordProfile() {
         ll_address: document.getElementById("ll_address").value,
         ll_unit: document.getElementById("ll_unit").value,
         ll_pan: document.getElementById("ll_pan").value,
-        ll_mobile: document.getElementById("ll_mobile").value,
+        ll_mobile: getCookie("ll_mobile"),
         ll_pan_verification: null
     }
     return profile;
@@ -127,6 +139,17 @@ function buildLandLord(llProfile, llBankAccount) {
     return landLord;
 }
 
+function buildPanDetails() {
+
+    let panDetails = {
+        legalName: document.getElementById("ll_fullname").value,
+        mobile: document.getElementById("ll_mobile").value,
+        pan: document.getElementById("ll_pan").value
+    }
+
+    return panDetails
+}
+
 function initTenants() {
     if (tp.length === 0) {
         let tenantAndProperty = getTenantPropertyFromForm();
@@ -136,9 +159,9 @@ function initTenants() {
 
 async function fetchHtmlAsText(url) {
     let responsePromise = await fetch(url);
-    if(responsePromise.ok) {
+    if (responsePromise.ok) {
         return await (responsePromise).text();
-    }else{
+    } else {
         alert("Error : " + responsePromise.statusText)
     }
 }
@@ -187,13 +210,19 @@ function initDatePickers() {
     // Lease end date picker
     if (llrLeaseenddate.length) {
         llrLeaseenddate.datepicker({
-            autoclose: true
+            autoclose: true,
+            format: "dd/mm/yyyy",
+            orientation: 'top',
+            readOnly: true
         })
     }
     // Lease start date picker
     if (llrLeasestartdate.length) {
         llrLeasestartdate.datepicker({
-            autoclose: true
+            autoclose: true,
+            format: "dd/mm/yyyy",
+            orientation: 'top',
+            readOnly: true
         })
     }
 }
@@ -205,6 +234,7 @@ function deliveryMethod(type) {
 }
 
 const Error500 = "Houston, we have a problem ! Please try again.";
+const home = "https://www.rentgain.com";
 const url = "/rentgain/";
 const url_dcb = "/rentgain-dcb/";
 
@@ -224,6 +254,7 @@ function showSwalToast(responseData) {
         }
     })
 }
+
 function showSwalConfirm(title, text) {
     Swal.fire({
         title: title,
@@ -252,7 +283,8 @@ function showSwalConfirm(title, text) {
         }
     });
 }
-function showSwalDialog(responseData) {
+
+function showSwalDialog(responseData, replace) {
     Swal.fire({
         icon: 'success',
         title: responseData.onSuccess,
@@ -267,9 +299,15 @@ function showSwalDialog(responseData) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            window.open(responseData.link)
+            if (replace) {
+                window.location.assign(responseData.link)
+            } else {
+                window.open(responseData.link)
+            }
         } else if (result.isDenied) {
             Swal.fire('Changes are not saved', '', 'info')
+        } else if (result.isDismissed) {
+            window.location.assign(responseData.link)
         }
     })
 }
@@ -314,7 +352,7 @@ async function saveNextAction(event, nextAction, back) {
 
 function loadYears(selectId) {
     let props = document.getElementById(selectId);
-    var years = ["2023", "2022"];
+    var years = ["2024"];
     let m;
     for (m in years) {
         var option = document.createElement("option");
@@ -399,7 +437,7 @@ function nextAction() {
                         }
                     })
                     offCanvasEl.show(formDiv);
-                    initDatePickers();
+                    //initDatePickers();
                     initDatatables();
                 }
             );
@@ -432,6 +470,7 @@ async function postData(url = "", data = {}) {
     }
 
 }
+
 async function saveTenantProfile(event) {
     showBusy(event)
     let lltProfile = buildTenantProfile();
@@ -439,12 +478,12 @@ async function saveTenantProfile(event) {
     if (response.ok) {
 
         let onTenantProfileSuccess = {
-                onSuccess : "Welcome to Rentgain, profile saved successfully !",
-                confirmButtonText: "Learn more at RentGain", // !== null ? responseData.confirmButtonText : 'Goto WhatsApp',
-                footerMsg1 : "Rent invoices including UPI links will be sent via ",
-                footerMsg2 : "WhatsApp.",
-                footerMsg3 : "Please save us in your contacts.",
-                link: "https://www.rentgain.com"
+            onSuccess: "Welcome to Rentgain, profile saved successfully !",
+            confirmButtonText: "Learn more at RentGain", // !== null ? responseData.confirmButtonText : 'Goto WhatsApp',
+            footerMsg1: "Rent invoices including UPI links will be sent via ",
+            footerMsg2: "WhatsApp.",
+            footerMsg3: "Please save us in your contacts.",
+            link: "https://www.rentgain.com"
         }
         showSwalDialog(onTenantProfileSuccess);
         // let contentDiv = document.getElementsByClassName("content-wrapper")[0];
@@ -460,28 +499,24 @@ async function saveTenantProfile(event) {
     removeBusy(event)
 }
 
-async function saveLandLord(event) {
-
-    showBusy(event)
-    let llProfile = buildLandLordProfile();
-    // Make a fetch request
+async function validatePan(llProfile) {
     await fetch(url_dcb + "PANDetailed?pan=" + llProfile.ll_pan)
         .then(response => {
             // Check if the request was successful (status code 200-299)
             if (response.ok) {
                 // Parse the JSON response
                 return response.json();
-            }else{
+            } else {
                 return null;
             }
         })
         .then(panVerification => {
-            if(panVerification !== null) {
-                if(panVerification.verified === true) {
+            if (panVerification !== null) {
+                if (panVerification.status === "VALID") {
                     let name = panVerification.kycResponse.kycResult.fullName;
                     const modifiedPanName = name.replace(/\s/g, '').toLowerCase();
                     const modifiedEnteredName = llProfile.ll_fullname.replace(/\s/g, '').toLowerCase();
-                    if(modifiedPanName === modifiedEnteredName) {
+                    if (modifiedPanName === modifiedEnteredName) {
                         let rd = {
                             onSuccess: "PAN verified successfully !",
                             statusTxt: "Verified name on PAN matches entered legal name."
@@ -489,11 +524,11 @@ async function saveLandLord(event) {
 
                         showSwalToast(rd)
                         llProfile.panVerification = panVerification;
-                    }else{
+                    } else {
                         let title = "The name on your PAN does not match the entered legal name."
                         let text = "Are you ok to use name from PAN ?"
 
-                        showSwalConfirm(title,text);
+                        showSwalConfirm(title, text);
                     }
                 }
             }
@@ -502,12 +537,100 @@ async function saveLandLord(event) {
             // Handle errors
             console.error('There was a problem with the fetch operation:', error);
         });
+}
+
+async function saveLandLord(event) {
+
+    showBusy(event)
+    let llProfile = buildLandLordProfile();
+    // Make a fetch request
+    //await validatePan(llProfile);
 
     let llBankAccount = buildLandLordBankAccount();
     let landLord = buildLandLord(llProfile, llBankAccount);
-    let response = await postData(url + "saveLandLord", landLord);
+    let response = await postData(url + "saveLandLord?sid=" + getCookie("sid"), landLord);
     if (response.ok) {
-        loadHome(document.getElementsByClassName("content-wrapper")[0], url + "next", nextAction);
+        let onLandloredProfileSuccess = {
+            onSuccess: "Welcome to Rentgain, profile saved successfully !",
+            confirmButtonText: "Learn more at RentGain", // !== null ? responseData.confirmButtonText : 'Goto WhatsApp',
+            footerMsg1: "Account validation in progress, status updates will be sent via ",
+            footerMsg2: "WhatsApp.",
+            footerMsg3: "Please save us in your contacts.",
+            link: "https://www.rentgain.com"
+        }
+        showSwalDialog(onLandloredProfileSuccess);
+    }else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Please try again.</a>'
+        })
+    }
+    removeBusy(event)
+}
+function getCookie(cookieName) {
+    let cookie = {};
+    document.cookie.split(';').forEach(function(el) {
+        let [key,value] = el.split('=');
+        cookie[key.trim()] = value;
+    })
+    return cookie[cookieName];
+}
+async function saveLandLordBank(event) {
+
+    showBusy(event)
+    let llMobile = getCookie("ll_mobile")
+    let sid = getCookie("sid")
+    let llBankAccount = buildLandLordBankAccount();
+    let response = await postData(url + "saveLandLordBank?mobile=" + llMobile + "&sid="+sid, llBankAccount);
+    if (response.ok) {
+
+        let onBankSaveSuccess = {
+            onSuccess: "Bank details submitted for validation!",
+            confirmButtonText: "How we validate bank accounts ?", // !== null ? responseData.confirmButtonText : 'Goto WhatsApp',
+            footerMsg1: "Validation results will be will be sent via ",
+            footerMsg2: "WhatsApp.",
+            link: "https://www.rentgain.com"
+        }
+        // loadHome(document.getElementsByClassName("content-wrapper")[0], home );
+        showSwalDialog(onBankSaveSuccess, true);
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Please try again.</a>'
+        })
+    }
+    removeBusy(event)
+}
+
+async function savePan(event) {
+
+    showBusy(event)
+
+    let panDetails = buildPanDetails();
+    let response = await postData(url + "savePan", panDetails);
+    if (response.ok) {
+
+        let onPanSaveSuccess = {
+            onSuccess: "Pan details submitted for validation!",
+            confirmButtonText: "How we validate PAN ?", // !== null ? responseData.confirmButtonText : 'Goto WhatsApp',
+            footerMsg1: "Validation results will be will be sent via ",
+            footerMsg2: "WhatsApp.",
+            link: "https://www.rentgain.com"
+        }
+        showSwalDialog(onPanSaveSuccess, true);
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Please try again.</a>'
+        })
     }
     removeBusy(event)
 }
@@ -544,6 +667,30 @@ function removeBusy(event) {
 
             if (validateForm(event) == true) {
                 saveTenantProfile(event);
+            }
+
+        })
+    }
+
+    const editBankForm = document.getElementById("edit_bank_form")
+
+    if (editBankForm !== null && editBankForm !== undefined) {
+        editBankForm.addEventListener('submit', event => {
+
+            if (validateForm(event) == true) {
+                saveLandLordBank(event);
+            }
+
+        })
+    }
+
+    const editPanForm = document.getElementById("edit_pan_form")
+
+    if (editPanForm !== null && editPanForm !== undefined) {
+        editPanForm.addEventListener('submit', event => {
+
+            if (validateForm(event) == true) {
+                savePan(event);
             }
 
         })

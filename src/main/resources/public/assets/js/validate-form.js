@@ -13,8 +13,10 @@ function validateForm(event) {
             let match = inputElement.dataset.match;
             if (match !== undefined) {
                 let matchField = match;
-                if (document.getElementById(matchField).value !== inputElement.value) {
+                let matchValue = document.getElementById(matchField);
+                if (matchValue.value !== inputElement.value) {
                     customValidation.set(inputElement, "Account Numbers Must Match");
+                    fieldValidationFailure.set(inputElement, validateSuccess)
                 } else {
                     if (customValidation.has(inputElement)) {
                         customValidation.delete(inputElement);

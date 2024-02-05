@@ -21,4 +21,5 @@ public class Profile {
     private String ll_email;
     private String ll_unit;
     private PanVerification panVerification;
+    private String dob;
 }

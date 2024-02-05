@@ -2,6 +2,7 @@ package com.rentgain.scheduled;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.rentgain.cb.decentro.callouts.service.BankAccountValidationService;
+import com.rentgain.cb.decentro.callouts.service.DecentroKycVerificationService;
 import com.rentgain.cb.decentro.callouts.serviceint.DecentroKYCVerification;
 import com.rentgain.cb.decentro.callouts.serviceint.DecentroTransactionStatusInt;
 import com.rentgain.cb.decentro.model.*;
@@ -12,6 +13,7 @@ import com.rentgain.service.CrudService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
+import io.micronaut.scheduling.annotation.Scheduled;
 import jakarta.inject.Inject;
 
 import java.util.Collection;
@@ -28,7 +30,7 @@ public class LandLordVerificationService {
     WaGsRestClient waGsRestClient;
 
     @Inject
-    DecentroKYCVerification decentroKYCVerification;
+    DecentroKycVerificationService decentroKYCVerification;
 
     @Inject
     DecentroTransactionStatusInt decentroTransactionStatusInt;
@@ -40,14 +42,18 @@ public class LandLordVerificationService {
     @Inject
     VirtualAccountCreator virtualAccountCreator;
 
+    @Inject
+    VirtualAccountToSettlementAccountMapper virtualAccountToSettlementAccountMapper;
+
     @Get("/schedule")
+
     public HttpResponse doWork() {
         try {
-        verifyLandlordPan();
-        verifyLandlordBankAccount();
-        checkPendingBankAccountValidations();
-
+            verifyLandlordPan();
+            verifyLandlordBankAccount();
+            checkPendingBankAccountValidations();
             virtualAccountCreator.createVirtualBankAccount();
+            virtualAccountToSettlementAccountMapper.mapVirtualBankAccountToSettlement();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,7 +112,7 @@ public class LandLordVerificationService {
                 handleStatus(bankAccountValidation, transactionStatusResponse.getStatus());
             });
         } catch (Exception e) {
-            
+
             e.printStackTrace();
         }
     }
@@ -114,17 +120,17 @@ public class LandLordVerificationService {
     private void handleStatus(BankAccountValidation bankAccountValidation, String transactionStatusResponse) {
         System.out.println("Running->verifyLandlordBankAccount: handleStatus  " + bankAccountValidation);
         try {
-            Landlord landlord = CrudService.getLandlord(bankAccountValidation.mobile);
+            Landlord landlord = CrudService.getLandlord(bankAccountValidation.getMobile());
             switch (transactionStatusResponse) {
                 case "success":
                     if (STATE_NOTIFICATION.SUCCESS != bankAccountValidation.getNotification()) {
-                        waGsRestClient.sendBankVerificationSuccessfull(bankAccountValidation.getName(), bankAccountValidation.getMobile());
+                        waGsRestClient.sendBankVerificationSuccessfull(bankAccountValidation.getName(), bankAccountValidation.getMobile(), bankAccountValidation.getSid());
                         updateStatus(bankAccountValidation, STATE_NOTIFICATION.SUCCESS, landlord, ValidationState.SUCCESS);
                     }
                     break;
                 case "failure":
                     if (STATE_NOTIFICATION.FAILURE != bankAccountValidation.getNotification()) {
-                        waGsRestClient.sendBankVerificationFailed(bankAccountValidation.getName(), bankAccountValidation.getMobile());
+                        waGsRestClient.sendBankVerificationFailed(bankAccountValidation.getName(), bankAccountValidation.getMobile(), bankAccountValidation.getSid());
                         updateStatus(bankAccountValidation, STATE_NOTIFICATION.FAILURE, landlord, ValidationState.FAILURE);
                     }
                     break;
@@ -163,17 +169,17 @@ https://media.smsgupshup.com/GatewayAPI/rest?userid=2000219131&password={{PASSWO
         switch (bankAccountValidation.getStatus()) {
             case "success":
                 if (STATE_NOTIFICATION.SUCCESS != bankAccountValidation.getNotification()) {
-                    waGsRestClient.sendBankVerificationSuccessfull(bankAccountValidation.getName(), bankAccountValidation.getMobile());
+                    waGsRestClient.sendBankVerificationSuccessfull(bankAccountValidation.getName(), bankAccountValidation.getMobile(), bankAccountValidation.getSid());
                 }
                 break;
             case "failure":
                 if (STATE_NOTIFICATION.FAILURE != bankAccountValidation.getNotification()) {
-                    waGsRestClient.sendBankVerificationFailed(bankAccountValidation.getName(), bankAccountValidation.getMobile());
+                    waGsRestClient.sendBankVerificationFailed(bankAccountValidation.getName(), bankAccountValidation.getMobile(), bankAccountValidation.getSid());
                 }
                 break;
             case "pending":
                 if (STATE_NOTIFICATION.PENDING != bankAccountValidation.getNotification()) {
-                    waGsRestClient.sendBankVerificationSuccessfull(bankAccountValidation.getName(), bankAccountValidation.getMobile());
+                    waGsRestClient.sendBankVerificationSuccessfull(bankAccountValidation.getName(), bankAccountValidation.getMobile(), bankAccountValidation.getSid());
                 }
                 break;
         }
@@ -193,7 +199,7 @@ https://media.smsgupshup.com/GatewayAPI/rest?userid=2000219131&password={{PASSWO
         panVerificationPojo.setKycRequest(kycRequest);
         try {
             if ("SUCCESS".equals(kycResponse.getStatus())) {
-                if (!STATE_NOTIFICATION.SUCCESS.equals(panVerificationPojo.getNState())) {
+               if (!STATE_NOTIFICATION.SUCCESS.equals(panVerificationPojo.getNState())) {
                     waGsRestClient.sendPanVerificationSuccessfull(panVerificationPojo.getMobile(), kycResponse.getKycResult().getFullName());
                     panVerificationPojo.setNState(STATE_NOTIFICATION.SUCCESS);
                 }

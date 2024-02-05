@@ -56,16 +56,16 @@ public class WaGsRestClient {
         return waGsRestClientInt.optIn(mobile);
     }
 
-    public ResponseWrapper sendBankVerificationSuccessfull(String name, String mobile) {
-        return waGsRestClientInt.sendBankVerificationSuccessfull(hsmUser, password, header, footer, mobile, name);
+    public ResponseWrapper sendBankVerificationSuccessfull(String name, String mobile, String sid) {
+        return waGsRestClientInt.sendBankVerificationSuccessfull(hsmUser, password, header, footer, mobile, name, "?mobile=" + mobile + "&sid=" + sid);
     }
 
     public ResponseWrapper sendBankVerificationPending(String name, String mobile) {
         return waGsRestClientInt.sendBankVerificationPending(hsmUser, password, header, footer, mobile, name);
     }
 
-    public ResponseWrapper sendBankVerificationFailed(String name, String mobile) {
-        return waGsRestClientInt.sendBankVarificationFailure(hsmUser, password, header, footer, mobile, name, "?bank=Y&mobile=" + mobile);
+    public ResponseWrapper sendBankVerificationFailed(String name, String mobile, String sid) {
+        return waGsRestClientInt.sendBankVarificationFailure(hsmUser, password, header, footer, mobile, name, "?mobile=" + mobile + "&sid=" + sid);
     }
 
 

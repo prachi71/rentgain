@@ -25,6 +25,12 @@ public class Utils {
         return toMap;
     }
 
+    public static String getTenDigitTelNo(String telNo){
+        if (telNo.length() > 10) {
+            return telNo.substring(telNo.length() - 10);
+        }
+        return telNo;
+    }
     public static String telephoneFormatter(String telephoneNumber) {
         String tel10 = telephoneNumber.substring(telephoneNumber.length() - 10);
         String telFormatted = String.format("+%s %s", telephoneNumber.replace(tel10,""),tel10);

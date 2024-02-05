@@ -53,7 +53,6 @@ public interface WaGsRestClientInt {
             @Nonnull String upiLink
             //@QueryValue(value = "send_to") String phone, @QueryValue(value="msg") String msq
     );
-
     @Get("?userid={userId}" +
             "&password={password}" +
             "&send_to={mobile}" +
@@ -86,12 +85,12 @@ public interface WaGsRestClientInt {
             "&msg_type=TEXT" +
             "&method=SENDMESSAGE" +
             "&isTemplate=true" +
-            "&msg=Hello+{name}%0A%0AThank+you+for+signing+up+with+RentGain+.%0A%0ABank+account+verification+is+successfull+.%0A%0ARegards&header={header}&footer={footer}"
-
+            //"&msg=Hello+{name}%0A%0AThank+you+for+signing+up+with+RentGain+.%0A%0ABank+account+verification+is+successfull+.%0A%0ARegards&header={header}&footer={footer}"
+            "&msg=Hello+{name}%0A%0AThank+you+for+signing+up+with+RentGain.%0A%0ABank+account+verification+is+successful.+%0A%0AClick+the+proceed+button+to+interact+with+RentGain%0A%0ARegards&isTemplate=true&header={header}&footer={footer}&buttonUrlParam={param}"
     )
     // https://media.smsgupshup.com/GatewayAPI/rest?userid=2000219131&password={{PASSWORD}}&send_to=16176207674&v=1.1&format=json&msg_type=TEXT&method=SENDMESSAGE&msg=Hello+Mr.++Kumar%0A%0AThank+you+for+signing+up+with+RentGain+.%0A%0ABank+account+verification+is+sucessfull+.%0A%0ARegards&isTemplate=true&header=RentGain+%3A+Renting+Made+Easy&footer=https%3A%2F%2Frentgain.com
    // https://media.smsgupshup.com/GatewayAPI/rest?userid=2000219131&password={{PASSWORD}}&send_to=16176207674&v=1.1&format=json&msg_type=TEXT&method=SENDMESSAGE&msg=Hello+Mr.++Kumar%0A%0AThank+you+for+signing+up+with+RentGain+.%0A%0ABank+account+verification+is+successfull+.%0A%0ARegards&isTemplate=true&header=RentGain+%3A+Renting+Made+Easy&footer=https%3A%2F%2Frentgain.com
-
+    //https://media.smsgupshup.com/GatewayAPI/rest?userid=2000219131&password={{PASSWORD}}&send_to=16176207674&v=1.1&format=json&msg_type=TEXT&method=SENDMESSAGE&msg=Hello+Pradeep+Kumar%0A%0AThank+you+for+signing+up+with+RentGain.%0A%0ABank+account+verification+is+successful.+%0A%0AClick+the+proceed+button+to+interact+with+RentGain%0A%0ARegards&isTemplate=true&header=RentGain+%3A+Renting+Made+Easy&footer=https%3A%2F%2Frentgain.com&buttonUrlParam=%3Fsid%3DbiR6O5C1T88ItJDonbV6%26mobile%3D16176207674
     @Produces({"application/json"})
     ResponseWrapper sendBankVerificationSuccessfull(
             @Nonnull String userId,
@@ -99,7 +98,8 @@ public interface WaGsRestClientInt {
             @Nonnull String header,
             @Nonnull String footer,
             @Nonnull String mobile,
-            @Nonnull String name
+            @Nonnull String name,
+            @Nonnull String param
 
 
     );

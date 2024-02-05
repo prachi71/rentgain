@@ -1,6 +1,7 @@
 @param com.rentgain.model.ui.Header header
 @param boolean isRegistered
 @param String mobile
+@param String sid
 <!DOCTYPE html>
 
 <html
@@ -38,9 +39,8 @@
 
 <body>
 @if(!isRegistered)
-    @template.signup(mobile=mobile)
-
-    @else
+    @template.signup(mobile = mobile,sid = sid)
+@else
     @template.next()
 @endif
 

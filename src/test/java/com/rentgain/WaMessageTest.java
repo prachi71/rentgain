@@ -19,13 +19,13 @@ public class WaMessageTest {
 
     //@Test
     public void testBankVerficationSuccessfullMessage() {
-        ResponseWrapper rw = waGsRestClient.sendBankVerificationSuccessfull("Pradeep Kumar", "16176207674");
+        ResponseWrapper rw = waGsRestClient.sendBankVerificationSuccessfull("Pradeep Kumar", "16176207674", "1");
         System.out.println(rw);
     }
 
     //@Test
     public void testBankVerficationFailedMessage() {
-        ResponseWrapper rw = waGsRestClient.sendBankVerificationFailed("Pradeep Kumar","16176207674");
+        ResponseWrapper rw = waGsRestClient.sendBankVerificationFailed("Pradeep Kumar","16176207674", "1");
         System.out.println(rw);
     }
 

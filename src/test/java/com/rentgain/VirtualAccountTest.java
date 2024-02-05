@@ -12,16 +12,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-//@MicronautTest
+@MicronautTest
 public class VirtualAccountTest {
 
     @Inject
     VirtualAccountService c;
 
-    //@Test
+    @Test
     public void testCreateVirtualAccount() {
         VirtualAccountRequest virtualAccount = new VirtualAccountRequest();
-        List<String> bCodes = Arrays.asList(new String[]{"YESB"});
+        List<String> bCodes = Arrays.asList(new String[]{"DBSS"});
         virtualAccount.setBank_codes(bCodes);
         virtualAccount.setName("Pradeep Kumar");
         virtualAccount.setPan("ADXPK1245E");
@@ -36,7 +36,7 @@ public class VirtualAccountTest {
         virtualAccount.setTransaction_limit(BigDecimal.valueOf(1000000).doubleValue());
         virtualAccount.setCustomer_id("PKRG93");
         virtualAccount.setVirtual_account_balance_settlement("enabled");
-        virtualAccount.setMaster_account_alias("decentro_account_ybl_3");
+        virtualAccount.setMaster_account_alias("decentro_dbs_account_1");
         virtualAccount.setUpi_onboarding(true);
         virtualAccount.setState_code(1);
         virtualAccount.setPincode(560036);

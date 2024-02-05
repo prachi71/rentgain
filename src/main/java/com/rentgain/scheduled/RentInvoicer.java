@@ -93,7 +93,7 @@ public class RentInvoicer {
 
             UpiPaymentLinkRequest upiPaymentLinkRequest = new UpiPaymentLinkRequest();
             upiPaymentLinkRequest.setReference_id(id);
-            upiPaymentLinkRequest.setAmount(Integer.parseInt(tenant.getLlr_amount()));
+            upiPaymentLinkRequest.setAmount(Double.parseDouble(tenant.getLlr_amount()));
             upiPaymentLinkRequest.setPurpose_message(String.format("Rent for %s month %s year for %s", rentMonth, rentYear, tenant.getLlr_existing_property()));
             upiPaymentLinkRequest.setGenerate_qr(0);
             upiPaymentLinkRequest.setGenerate_uri(1);

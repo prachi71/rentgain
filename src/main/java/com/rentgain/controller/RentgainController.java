@@ -1,14 +1,15 @@
-package com.rentgain;
+package com.rentgain.controller;
 
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.SetOptions;
 import com.rentgain.annotations.SendWA;
+import com.rentgain.cb.decentro.callouts.service.BankAccountValidationService;
+import com.rentgain.cb.decentro.callouts.service.DecentroKycVerificationService;
 import com.rentgain.cb.decentro.callouts.serviceint.DecentroBankAccountValidationInt;
 import com.rentgain.cb.decentro.callouts.serviceint.DecentroKYCVerification;
 import com.rentgain.cb.decentro.callouts.serviceint.DecentroUpiLinkGeneratorInt;
 import com.rentgain.cb.decentro.callouts.serviceint.DecentroVirtualAccountInt;
 import com.rentgain.cb.decentro.model.*;
-import com.rentgain.cb.decentro.model.factory.VirtualAccountFactory;
 import com.rentgain.cb.wa.callouts.WaGsRestClient;
 import com.rentgain.cb.wa.callouts.WaGsRestClientInt;
 import com.rentgain.configuration.MessagesConfiguration;
@@ -16,6 +17,7 @@ import com.rentgain.model.*;
 import com.rentgain.model.request.*;
 import com.rentgain.service.CrudService;
 import com.rentgain.service.MessageLookup;
+import com.rentgain.utils.Utils;
 import io.micronaut.core.naming.NameUtils;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -23,6 +25,7 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.netty.cookies.NettyCookie;
+import jakarta.annotation.Nonnull;
 import jakarta.inject.Inject;
 
 import javax.validation.Valid;
@@ -33,6 +36,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+
+import static com.rentgain.cb.decentro.controller.Controller.getKycRequest;
+import static io.micronaut.http.annotation.Controller.*;
 
 
 @Controller("/rentgain")
@@ -48,15 +54,15 @@ public class RentgainController {
                     Your+residential+rental+invoice+for+the+month+%s+%s+is+generated.+
                             The+invoice+is+due+for+payment+by+%s+%s,+%s
                     Click+on+the+link+to+view+the+invoice+and+pay+it.++%s""";
-    private static final String PENNY_DROP_AMOUNT = "1.5";
+    public static final String PENNY_DROP_AMOUNT = "1.5";
     @Inject
     MessageLookup messageLookup;
 
     @Inject
-    DecentroBankAccountValidationInt decentroBankAccountValidationInt;
+    BankAccountValidationService bankAccountValidationService;
 
     @Inject
-    DecentroKYCVerification decentroKYCVerification;
+    DecentroKycVerificationService decentroKYCVerification;
 
     @Inject
     DecentroVirtualAccountInt decentroVirtualAccountInt;
@@ -122,7 +128,7 @@ public class RentgainController {
     @Consumes(MediaType.APPLICATION_JSON)
     @SendWA
     public HttpResponse<?> saveTenant(@Body @Valid Tenant tenant, @CookieValue("ll_mobile") String llMobile) throws ExecutionException, InterruptedException, ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/M/yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
         Calendar startLease = Calendar.getInstance();
         startLease.setTime(formatter.parse(tenant.getLlr_leasestartdate()));
 
@@ -145,54 +151,92 @@ public class RentgainController {
 
     @Post("/saveLandLord")
     @Consumes(MediaType.APPLICATION_JSON)
-    public HttpResponse<?> saveLandLord(@Body @Valid Landlord landlord) throws Exception {
+    public HttpResponse<?> saveLandLord(@Body @Valid Landlord landlord, @Nonnull @QueryValue String sid) throws Exception {
         System.out.println("save landlord : " + landlord);
 
-        seedPanValidation(landlord);
+        PanDetails panDetails = new PanDetails();
+        panDetails.setPan(landlord.getProfile().getLl_pan());
+        panDetails.setLegalName(landlord.getProfile().getLl_fullname());
+        panDetails.setMobile(landlord.getProfile().getLl_mobile());
+        panDetails.setDob(landlord.getProfile().getDob());
 
-        seedBankAccountValidation(landlord);
+        seedPanValidation(panDetails);
 
-        //unset so avoid saving on the ll
-        landlord.getProfile().setPanVerification(null);
+        seedBankAccountValidation(landlord, landlord.getBankAccount(), sid);
+
         // This will be used to create VA's
-        landlord.setLl_cust_id(UUID.randomUUID().toString());
+        seedCustomerId(landlord);
 
         CrudService.saveLandlord(landlord);
         // Validate bank account
 
         // after bank validated activate the lanalord
-        return HttpResponse.status(HttpStatus.OK).body("Saved successfully !").cookie(new NettyCookie(
+        return HttpResponse.status(HttpStatus.OK).body("Saved Successfully!").cookie(new NettyCookie(
                 "ll_mobile", landlord.getProfile().getLl_mobile()));
 
     }
 
-    private void seedPanValidation(Landlord landlord) throws ExecutionException, InterruptedException {
-        PanVerification panVerification = landlord.getProfile().getPanVerification();
-        if (panVerification == null) {
-            panVerification = new PanVerification();
-            panVerification.setMobile(landlord.getProfile().getLl_mobile());
-            panVerification.setPan(landlord.getProfile().getLl_pan());
-            panVerification.setKycRequest(com.rentgain.cb.decentro.Controller.getKycRequest(panVerification.getPan()));
+    private static Map<String, String> existingCids = new HashMap<String, String>();
+
+    static {
+        existingCids.put("6176207674", "PKRG93");
+        existingCids.put("9845128580", "e32ab3f3-a451-4dc6-8c64-4a4ec999f781");
+        existingCids.put("8310798566", "2a39d661-7f40-4a7a-9cf3-85fb14dbdd9b");
+        existingCids.put("9845075065", "YMRG93");
+    }
+
+    private void seedCustomerId(Landlord landlord) {
+        String telNo = Utils.getTenDigitTelNo(landlord.getProfile().getLl_mobile());
+        String existingCid = existingCids.get(telNo);
+        landlord.setLl_cust_id(existingCid != null ? existingCid : UUID.randomUUID().toString());
+    }
+
+    @Post("/saveLandLordBank")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @SendWA
+    public HttpResponse<?> saveBank(@QueryValue String mobile, @QueryValue String sid, @Body @Valid BankAccount bankAccount) throws ExecutionException, InterruptedException, ParseException {
+        Landlord landlord = CrudService.getLandlord(mobile);
+        if (landlord != null) {
+            if (ValidationState.FAILURE.equals(landlord.getBankAccount().getState())) {
+                seedBankAccountValidation(landlord, bankAccount, sid);
+            }
         }
+        return HttpResponse.ok();
+    }
+
+    @Post("/savePan")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @SendWA
+    public HttpResponse<?> savePan(@Body @Valid PanDetails panDetails) throws ExecutionException, InterruptedException, ParseException {
+        seedPanValidation(panDetails);
+        return HttpResponse.ok();
+    }
+
+    private void seedPanValidation(PanDetails panDetails) throws ExecutionException, InterruptedException {
+        PanVerification panVerification = new PanVerification();
+        panVerification.setMobile(panDetails.getMobile());
+        panVerification.setPan(panDetails.getPan());
+        panVerification.setKycRequest(getKycRequest(panVerification.getPan()));
         CrudService.savePanVerification(panVerification);
     }
 
-    private void seedBankAccountValidation(Landlord landlord) throws ExecutionException, InterruptedException {
+    private void seedBankAccountValidation(Landlord landlord, BankAccount bankAccount, String sid) throws ExecutionException, InterruptedException {
         BankAccountValidationRequest bankAccountValidationRequest = new BankAccountValidationRequest();
         bankAccountValidationRequest.setPurpose_message("Validating " + landlord.getProfile().getLl_fullname() + " bank details");
         bankAccountValidationRequest.setReference_id(UUID.randomUUID().toString());
         BeneficiaryDetails beneficiaryDetails = new BeneficiaryDetails();
-        beneficiaryDetails.setAccount_number(landlord.getBankAccount().getLl_bacctn());
-        beneficiaryDetails.setIfsc(landlord.getBankAccount().getLl_ifsc());
+        beneficiaryDetails.setAccount_number(bankAccount.getLl_bacctn());
+        beneficiaryDetails.setIfsc(bankAccount.getLl_ifsc());
         bankAccountValidationRequest.setBeneficiary_details(beneficiaryDetails);
         bankAccountValidationRequest.setTransfer_amount(PENNY_DROP_AMOUNT);
 
 
         BankAccountValidation bankAccountValidation = new BankAccountValidation();
-        bankAccountValidation.createdTime = System.currentTimeMillis();
-        bankAccountValidation.mobile = landlord.getProfile().getLl_mobile();
-        bankAccountValidation.name = landlord.getProfile().getLl_fullname();
-        bankAccountValidation.bankAccountValidationRequest = bankAccountValidationRequest;
+        bankAccountValidation.setCreatedTime(System.currentTimeMillis());
+        bankAccountValidation.setMobile(landlord.getProfile().getLl_mobile());
+        bankAccountValidation.setName(landlord.getProfile().getLl_fullname());
+        bankAccountValidation.setBankAccountValidationRequest(bankAccountValidationRequest);
+        bankAccountValidation.setSid(sid);
 
         CrudService.saveBankAccountVerification(bankAccountValidation);
     }
@@ -234,7 +278,7 @@ public class RentgainController {
         String rent = tenant.getLlr_amount();
 
         UpiPaymentLinkRequest upiPaymentLinkRequest = new UpiPaymentLinkRequest();
-        upiPaymentLinkRequest.setAmount(Integer.parseInt(rent));
+        upiPaymentLinkRequest.setAmount(Double.parseDouble(rent));
         upiPaymentLinkRequest.setPayee_account(virtualAccount);
         upiPaymentLinkRequest.setGenerate_uri(1);
         final DocumentReference docRef = (DocumentReference) returnMap.get("docRef");
@@ -243,6 +287,7 @@ public class RentgainController {
         upiPaymentLinkRequest.setGenerate_qr(0);
         upiPaymentLinkRequest.setGenerate_uri(1);
         upiPaymentLinkRequest.setExpiry_time(32400);
+        upiPaymentLinkRequest.setCustomized_qr_with_logo(0);
         // UPI link
         UpiPaymentLinkResponse upiPaymentLinkResponse = decentroUpiLinkGeneratorInt.generateUpiLink(upiPaymentLinkRequest);
         Landlord ll = CrudService.getLandlord(llMobile);
@@ -290,7 +335,7 @@ public class RentgainController {
         paymentLink.setRent(rent);
         paymentLink.setMonth(requestRent.getRequest_rent_month());
         paymentLink.setYear(requestRent.getRequest_rent_year());
-        paymentLink.setRentFor(String.format("%s, %s", paymentLink.getMonth(),paymentLink.getYear()));
+        paymentLink.setRentFor(String.format("%s, %s", paymentLink.getMonth(), paymentLink.getYear()));
 
         // property details
         Property property = CrudService.getProperties(ll.getProfile().getLl_mobile()).stream().filter(properties -> properties.getLlp_nickname().equals(tenant.getLlr_existing_property())).findFirst().get();
@@ -357,7 +402,7 @@ public class RentgainController {
                 break;
 
         }
-        paymentLink.setInvoiceNumber(String.format("%s-%s", paymentLink.getYear(), (invoiceMonth+1)));
+        paymentLink.setInvoiceNumber(String.format("%s-%s", paymentLink.getYear(), (invoiceMonth + 1)));
 
         CrudService.savePaymentLink(paymentLink);
         System.err.println(paymentLink);
@@ -370,6 +415,15 @@ public class RentgainController {
         TenantInvite ti = CrudService.getTenantInvite(tenant.getLlp_tenantid());
         try {
             CrudService.update(tenant, ti);
+            try {
+                PanDetails panDetails = new PanDetails();
+                panDetails.setPan(tenant.getLlp_tenantpan());
+                panDetails.setMobile(ti.getTenantMobile());
+                panDetails.setLegalName(tenant.getLlp_tenantfullname());
+                seedPanValidation(panDetails);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Message message = getSuccessMessage(mc);
             return HttpResponse.ok(message).cookie(new NettyCookie(
                     "llt_mobile", ti.getTenantMobile()));

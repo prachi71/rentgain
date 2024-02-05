@@ -3,22 +3,27 @@ package com.rentgain.cb.decentro.model.factory;
 import com.rentgain.cb.decentro.model.VirtualAccountRequest;
 import com.rentgain.model.Landlord;
 import com.rentgain.model.Profile;
+import com.rentgain.utils.Utils;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
 public class VirtualAccountFactory {
+
+    public static final String DECENTRO_MASTER_ACCOUNT_ALIAS = "decentro_dbs_account_1";
+
     public static VirtualAccountRequest getVirtualAccountRequest(Landlord landlord, String customer_id) {
         VirtualAccountRequest virtualAccount = new VirtualAccountRequest();
-        List<String> bCodes = Arrays.asList(new String[]{"YESB"});
+        List<String> bCodes = Arrays.asList(new String[]{"DBSS"});
         virtualAccount.setBank_codes(bCodes);
         final Profile profile = landlord.getProfile();
         virtualAccount.setName(profile.getLl_fullname());
         virtualAccount.setPan(profile.getLl_pan());
         virtualAccount.setEmail(profile.getLl_email());
-        final String ll_mobile = landlord.getProfile().getLl_mobile();
-        virtualAccount.setMobile(ll_mobile.length()>10?ll_mobile.substring(1):ll_mobile);
+        String ll_mobile = landlord.getProfile().getLl_mobile();
+        ll_mobile = Utils.getTenDigitTelNo(ll_mobile);
+        virtualAccount.setMobile(ll_mobile);
         virtualAccount.setAddress(profile.getLl_address());
         virtualAccount.setKyc_verified(1);
         virtualAccount.setKyc_check_decentro(0);
@@ -26,7 +31,7 @@ public class VirtualAccountFactory {
         virtualAccount.setTransaction_limit(BigDecimal.valueOf(1000000).doubleValue());
         virtualAccount.setCustomer_id(customer_id);
         virtualAccount.setVirtual_account_balance_settlement("enabled");
-        virtualAccount.setMaster_account_alias("decentro_account_ybl_3");
+        virtualAccount.setMaster_account_alias(DECENTRO_MASTER_ACCOUNT_ALIAS);
         virtualAccount.setUpi_onboarding(true);
         virtualAccount.setState_code(1);
         virtualAccount.setPincode(560036);

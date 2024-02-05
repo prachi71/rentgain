@@ -18,7 +18,7 @@ public class FireStoreUtil {
 
     private static Firestore db = null;
 
-    public static final String RENTGAIN_DB_ID = "rentgain-test";
+    public static final String RENTGAIN_DB_ID = "rentgain-uat-test";//"rentgain-test";
 
     static {
         try {

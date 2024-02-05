@@ -15,12 +15,13 @@ import java.util.HashSet;
 @ToString
 
 public class BankAccountValidation {
-    public String name;
-    public String mobile;
-    public String status;
-    public STATE_NOTIFICATION notification;
-    public BankAccountValidationRequest bankAccountValidationRequest ;
-    public BankAccountValidationResponse bankAccountValidationResponse ;
-    public long createdTime;
+    private String name;
+    private String mobile;
+    private String status;
+    private STATE_NOTIFICATION notification;
+    private BankAccountValidationRequest bankAccountValidationRequest ;
+    private BankAccountValidationResponse bankAccountValidationResponse ;
+    private long createdTime;
+    private String sid;
 
 }

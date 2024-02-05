@@ -1,4 +1,4 @@
-package com.rentgain;
+package com.rentgain.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rentgain.annotations.SendWA;
@@ -48,9 +48,9 @@ public class RentGainViewController {
         Header headers = objectMapper.readValue(head.asInputStream(), Header.class);
         boolean validSession = CrudService.validateSession(sid);
         boolean registered = CrudService.isLandlordRegistered(mobile);
-
-        MutableHttpResponse<Map> ok = HttpResponse.ok(CollectionUtils.mapOf("header", headers, "isRegistered", registered, "mobile", mobile));
+        MutableHttpResponse<Map> ok = HttpResponse.ok(CollectionUtils.mapOf("header", headers, "isRegistered", registered, "mobile", mobile, "sid", sid));
         ok.cookie(new NettyCookie("ll_mobile", mobile));
+        ok.cookie(new NettyCookie("sid", sid));
         return ok;
     }
 
@@ -60,6 +60,30 @@ public class RentGainViewController {
         Header headers = objectMapper.readValue(head.asInputStream(), Header.class);
         // isRegistered will be true as cookie value will be set..maybe we still need to verify
         MutableHttpResponse<Map> ok = HttpResponse.ok(CollectionUtils.mapOf("header", headers, "isRegistered", Boolean.TRUE, "mobile", mobile));
+        ok.cookie(new NettyCookie("ll_mobile", mobile));
+        return ok;
+    }
+
+    @Get(uri = "/editBank")
+    @View("editBank")
+    public HttpResponse<?> editBank(@QueryValue String mobile, @QueryValue String sid) throws Exception {
+        Header headers = objectMapper.readValue(head.asInputStream(), Header.class);
+        boolean validSession = CrudService.validateSession(sid);
+        boolean registered = CrudService.isLandlordRegistered(mobile);
+
+        MutableHttpResponse<Map> ok = HttpResponse.ok(CollectionUtils.mapOf("header", headers, "isRegistered", registered, "mobile", mobile));
+        ok.cookie(new NettyCookie("ll_mobile", mobile));
+        return ok;
+    }
+
+    @Get(uri = "/editPan")
+    @View("editPan")
+    public HttpResponse<?> editPan(@QueryValue String mobile, @QueryValue String sid) throws Exception {
+        Header headers = objectMapper.readValue(head.asInputStream(), Header.class);
+        boolean validSession = CrudService.validateSession(sid);
+        boolean registered = CrudService.isLandlordRegistered(mobile);
+
+        MutableHttpResponse<Map> ok = HttpResponse.ok(CollectionUtils.mapOf("header", headers, "isRegistered", registered, "mobile", mobile));
         ok.cookie(new NettyCookie("ll_mobile", mobile));
         return ok;
     }

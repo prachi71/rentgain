@@ -89,9 +89,11 @@ decentro:
     client_id: 'rentgain_prod'
     client_secret: 'KkgP4ep6yeDcUwQsGwZlwpEO8CgmyZ0y'
     kyc_module_secret: 'UiPwdSsVcginyibCZYCir8LWPHPb4G2H'
-    accounts_module_secret: 'B4bLZzuVEIE4KNYRPAXw6x45VIjI2qqe'
+    accounts_module_secret: 'gESpZMDPAFGUTrTjJHxEy1A9Iq14ZDIn'
     payments_module_secret: 'abk6MtgX9HYNwdX8tfAGntNp3xpGZC4M'
-    provider_secret: 'QQrp78iywB4geWYv4E3o9fNQMvyIGFWv'
+    icici_provider_secret: 'o9HtStFnb8TD0wvCTB4Xc9tmQITCTKTM'
+    yesbank:
+      accounts_module_secret: 'B4bLZzuVEIE4KNYRPAXw6x45VIjI2qqe'
   bankaccountvalidation:
     url: 'https://in.decentro.tech'
     path: 'core_banking/money_transfer/validate_account'

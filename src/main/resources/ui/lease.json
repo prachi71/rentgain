@@ -29,7 +29,7 @@
       "invalidFeedBack": "Lease start sate is required",
       "labelId": null,
       "label": "Lease Start Date",
-      "inputType": "text",
+      "inputType": "date",
       "inputId": "llr_leasestartdate",
       "placeHolder": "DD/MM/YYYY"
     },
@@ -38,7 +38,7 @@
       "invalidFeedBack": "Lease end sate is required",
       "labelId": null,
       "label": "Lease End Date",
-      "inputType": "text",
+      "inputType": "date",
       "inputId": "llr_leaseenddate",
       "placeHolder": "DD/MM/YYYY"
     }

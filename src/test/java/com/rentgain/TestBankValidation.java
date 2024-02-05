@@ -32,10 +32,10 @@ public class TestBankValidation {
 
 
         BankAccountValidation bankAccountValidation = new BankAccountValidation();
-        bankAccountValidation.createdTime = System.currentTimeMillis();
-        bankAccountValidation.mobile = "16176207674";
-        bankAccountValidation.name = "Pradeep Kumar";
-        bankAccountValidation.bankAccountValidationRequest = bankAccountValidationRequest;
+        bankAccountValidation.setCreatedTime(System.currentTimeMillis());
+        bankAccountValidation.setMobile("16176207674");
+        bankAccountValidation.setName("Pradeep Kumar");
+        bankAccountValidation.setBankAccountValidationRequest(bankAccountValidationRequest);
 
         CrudService.saveBankAccountVerification(bankAccountValidation);
     }

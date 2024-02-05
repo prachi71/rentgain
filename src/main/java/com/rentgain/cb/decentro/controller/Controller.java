@@ -1,11 +1,14 @@
-package com.rentgain.cb.decentro;
+package com.rentgain.cb.decentro.controller;
 
 import com.rentgain.cb.decentro.callouts.service.BankAccountValidationService;
 import com.rentgain.cb.decentro.callouts.service.DecentroBankAccountToVirtualAccountService;
+import com.rentgain.cb.decentro.callouts.service.DecentroKycVerificationService;
 import com.rentgain.cb.decentro.callouts.service.DecentroUpiLinkGeneratorService;
 import com.rentgain.cb.decentro.callouts.serviceint.*;
 import com.rentgain.cb.decentro.model.*;
 import com.rentgain.cb.wa.callouts.WaGsRestClient;
+import com.rentgain.model.BankAccount;
+import com.rentgain.model.Landlord;
 import com.rentgain.model.LinkedVirtualAccount;
 import com.rentgain.model.PaymentLink;
 import com.rentgain.service.CrudService;
@@ -14,8 +17,11 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import jakarta.inject.Inject;
 
+import javax.validation.Valid;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+
+import static com.rentgain.controller.RentgainController.PENNY_DROP_AMOUNT;
 
 @io.micronaut.http.annotation.Controller("/rentgain-dcb")
 public class Controller {
@@ -44,7 +50,7 @@ public class Controller {
     DecentroBankAccountSettlement decentroBankAccountSettlement;
 
     @Inject
-    DecentroKYCVerification decentroKYCVerification;
+    DecentroKycVerificationService decentroKYCVerification;
 
     @Inject
     WaGsRestClient waGsRestClient;
@@ -138,7 +144,8 @@ public class Controller {
         panVerification.setPan(pan);
         panVerification.setKycRequest(kycRequest);
         panVerification.setKycResponse(kycResponse);
-        panVerification.setStatus(kycResponse.getKycResult().getPanStatus());
+        final KycResult kycResult = kycResponse.getKycResult();
+        panVerification.setStatus(kycResult != null ? kycResult.getPanStatus() : null);
         return HttpResponse.ok(panVerification);
     }
 

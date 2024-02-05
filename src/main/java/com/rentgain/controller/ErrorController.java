@@ -1,4 +1,4 @@
-package com.rentgain;
+package com.rentgain.controller;
 
 import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpRequest;

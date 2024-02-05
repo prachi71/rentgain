@@ -12,8 +12,8 @@ import jakarta.inject.Inject;
 import org.reactivestreams.Publisher;
 
 @Filter("/v2/banking/account/virtual")
-public class DecentroAccountHeaderFilter implements HttpClientFilter {
-    public DecentroAccountHeaderFilter() {
+public class DecentroVirtualAccountFilter implements HttpClientFilter {
+    public DecentroVirtualAccountFilter() {
 
     }
 
@@ -23,9 +23,12 @@ public class DecentroAccountHeaderFilter implements HttpClientFilter {
     @Override
     public Publisher<? extends HttpResponse<?>> doFilter(MutableHttpRequest<?> request, ClientFilterChain chain) {
         final MutableHttpHeaders headers = request.getHeaders();
-        headers.add(DecentroConfiguration.CLIENT_ID, decentroConfig.getClient_id())
-                .add(DecentroConfiguration.CLIENT_SECRET, decentroConfig.getClient_secret())
-                .add(DecentroConfiguration.ACCOUNTS_MODULE_SECRET, decentroConfig.getAccounts_module_secret());
+        String Client_ID = "rentgain_prod";
+        String Client_Secret = "KkgP4ep6yeDcUwQsGwZlwpEO8CgmyZ0y";
+        String Accounts_Module_Secret = "gESpZMDPAFGUTrTjJHxEy1A9Iq14ZDIn";
+        headers.add(DecentroConfiguration.CLIENT_ID, Client_ID)
+                .add(DecentroConfiguration.CLIENT_SECRET, Client_Secret)
+                .add(DecentroConfiguration.ACCOUNTS_MODULE_SECRET, Accounts_Module_Secret);
         return chain.proceed(request);
     }
 

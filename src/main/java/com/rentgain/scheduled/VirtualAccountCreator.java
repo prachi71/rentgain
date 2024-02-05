@@ -26,8 +26,6 @@ public class VirtualAccountCreator {
     @Inject
     DecentroVirtualAccountInt decentroVirtualAccountInt;
 
-    @Inject
-    DecentroBankAccountToVirtualAccountService decentroBankAccountToVirtualAccountService;
     public void createVirtualBankAccount() throws ExecutionException, InterruptedException {
         Query query = FireStoreUtil.getDb().collectionGroup("properties").whereEqualTo("llp_virtualAccountNumber", null);
         List<QueryDocumentSnapshot> data = query.get().get().getDocuments();
@@ -42,30 +40,12 @@ public class VirtualAccountCreator {
 
             VirtualAccountRequest virtualAccountRequest = VirtualAccountFactory.getVirtualAccountRequest(landlord, customer_id);
             VirtualAccountResponse virtualAccountResponse = decentroVirtualAccountInt.createVirtualAccount(virtualAccountRequest);
-
-            SettlementAccountMappingRequest settlementAccountMappingRequest = new SettlementAccountMappingRequest();
-            settlementAccountMappingRequest.setAccount_number(landlord.getBankAccount().getLl_bacctn());
-            settlementAccountMappingRequest.setAction("ADD");
-            settlementAccountMappingRequest.setReference_id(UUID.randomUUID().toString());
-            settlementAccountMappingRequest.setIfsc(landlord.getBankAccount().getLl_ifsc());
-            settlementAccountMappingRequest.setName(landlord.getProfile().getLl_fullname());
-            settlementAccountMappingRequest.setSender_account_number(virtualAccountResponse.getData().get(0).getAccountNumber());
-            SettlementAccountMappingResponse settlementAccountMappingResponse = decentroBankAccountToVirtualAccountService.mapVirtualAccountToBankAccount(settlementAccountMappingRequest);
-
-            System.out.println("createVirtualBankAccount created VA  " + settlementAccountMappingResponse);
-
             property.setLlp_virtualAccountNumber(virtualAccountResponse);
-
-           if(ValidationState.SUCCESS.equals(landlord.getBankAccount().status)) {
-               property.setSettlementAccountMappingResponse(settlementAccountMappingResponse);
-           }
             CrudService.updateProperty(propertyId, landlord.getProfile().getLl_mobile(), property);
         }
 
 
     }
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        new VirtualAccountCreator().createVirtualBankAccount();
-    }
+
 }

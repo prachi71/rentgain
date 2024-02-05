@@ -9,10 +9,10 @@ import io.micronaut.http.filter.ClientFilterChain;
 import io.micronaut.http.filter.HttpClientFilter;
 import org.reactivestreams.Publisher;
 
-@Filter("/core_banking/**")
-public class DecentroBankAccountFilter implements HttpClientFilter {
+@Filter("/kyc/**")
+public class DecentroKycVerificationFilter implements HttpClientFilter {
 
-    public DecentroBankAccountFilter() {
+    public DecentroKycVerificationFilter() {
         super();
     }
 
@@ -22,14 +22,12 @@ public class DecentroBankAccountFilter implements HttpClientFilter {
 
         String Client_ID = "rentgain_prod";
         String Client_Secret = "KkgP4ep6yeDcUwQsGwZlwpEO8CgmyZ0y";
-        String Accounts_Module_Secret = "B4bLZzuVEIE4KNYRPAXw6x45VIjI2qqe";//"NfufCwyGFSPb91GmuF0nS6kwr6lqkfNM";
-        String YBL_Provider_Secret = "QQrp78iywB4geWYv4E3o9fNQMvyIGFWv";
+        String KYC_Module_Secret = "UiPwdSsVcginyibCZYCir8LWPHPb4G2H";
 
-        System.out.println("Core Banking filter : " + request);
+
         headers.add(DecentroConfiguration.CLIENT_ID, Client_ID)
                 .add(DecentroConfiguration.CLIENT_SECRET, Client_Secret)
-                .add(DecentroConfiguration.ACCOUNTS_MODULE_SECRET, Accounts_Module_Secret)
-                .add("provider_secret", YBL_Provider_Secret);
+                .add(DecentroConfiguration.ACCOUNTS_MODULE_SECRET, KYC_Module_Secret);
         return chain.proceed(request);
     }
 }
